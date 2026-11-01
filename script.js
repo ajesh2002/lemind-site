@@ -244,7 +244,7 @@ async function showPage() {
 
   // Curtain rises to cover the page, the page swaps, then the curtain lifts away.
   curtain.className = "page-curtain is-covering"
-  await wait(650)
+  await wait(1250) // panel rises, then the logo writes itself
   swapTo(next)
   await wait(120)
   curtain.className = "page-curtain is-leaving"
@@ -749,7 +749,7 @@ showPage()
 updateHeader()
 
 // First load: lift the curtain once fonts are ready (or after 1.2s at most).
-Promise.race([document.fonts.ready, wait(1200)]).then(async () => {
+Promise.all([Promise.race([document.fonts.ready, wait(1200)]), wait(1350)]).then(async () => {
   curtain.className = "page-curtain is-leaving"
   if (!reduceMotion) playEntrance()
   await wait(750)

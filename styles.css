@@ -6040,3 +6040,65 @@ footer.site-footer .footer-logo {
     width: 150%;
   }
 }
+
+/* ================= HANDWRITTEN LOGO IN THE PAGE TRANSITION ================= */
+.page-curtain .curtain-logo {
+  width: 170px;
+  overflow: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 400ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+/* the mask sweeps left → right with a soft edge, revealing the letters like ink */
+.write-sweep {
+  transform: translateX(-230px);
+}
+
+.write-pen {
+  fill: var(--green);
+  opacity: 0;
+  filter: drop-shadow(0 0 4px var(--green));
+  transform: translateX(-6px);
+}
+
+.page-curtain.is-covering .write-sweep {
+  animation: write-sweep 1100ms cubic-bezier(0.45, 0.05, 0.35, 1) 180ms both;
+}
+
+.page-curtain.is-covering .write-pen {
+  animation: write-pen 1100ms cubic-bezier(0.45, 0.05, 0.35, 1) 180ms both;
+}
+
+@keyframes write-sweep {
+  from { transform: translateX(-230px); }
+  to { transform: translateX(0); }
+}
+
+/* pen tip rides the writing edge, bobbing over the letters, then fades */
+@keyframes write-pen {
+  0%   { opacity: 0; transform: translate(-4px, 6px); }
+  8%   { opacity: 1; }
+  20%  { transform: translate(36px, -6px); }
+  35%  { transform: translate(70px, 8px); }
+  50%  { transform: translate(105px, -4px); }
+  65%  { transform: translate(140px, 6px); }
+  80%  { transform: translate(175px, -14px); }
+  92%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(208px, 8px); }
+}
+
+/* keep the logo fully written while the panel lifts away */
+.page-curtain.is-leaving .write-sweep {
+  transform: translateX(0);
+}
+
+.page-curtain.is-leaving .curtain-logo {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .write-sweep { transform: none !important; animation: none !important; }
+  .write-pen { display: none; }
+}
