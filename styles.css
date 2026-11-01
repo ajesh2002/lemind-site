@@ -6334,3 +6334,25 @@ html.intro-handover #menu-toggle {
   will-change: auto;
   height: auto;
 }
+
+/* ===== new logo (with the dot on the i) ===== */
+/* curtain logo now uses the same 1362-unit drawing as the intro */
+.page-curtain.is-covering .write-sweep {
+  animation: intro-write 1100ms cubic-bezier(0.45, 0.05, 0.35, 1) 180ms both;
+}
+
+.page-curtain.is-covering .write-pen {
+  animation: intro-pen 1100ms cubic-bezier(0.45, 0.05, 0.35, 1) 180ms both;
+}
+
+.write-sweep {
+  transform: translateX(-1450px);
+}
+
+.page-curtain.is-leaving .write-sweep {
+  transform: translateX(420px);
+}
+
+.write-pen {
+  filter: drop-shadow(0 0 18px var(--green));
+}
