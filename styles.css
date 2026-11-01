@@ -5930,3 +5930,22 @@ footer.site-footer .footer-logo {
   margin: 0 14px 2px 0;
   background: rgba(255, 255, 255, 0.3);
 }
+
+/* Work tags as pills: light grey rounded border, 12px */
+.project-info .tags {
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.project-info .tags span {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+}
+
+.project-info .tags span + span::before {
+  display: none;
+}
