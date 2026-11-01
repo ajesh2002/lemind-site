@@ -6563,3 +6563,19 @@ html.intro-handover #menu-toggle {
     aspect-ratio: auto;
   }
 }
+
+/* sphere canvas: 40% larger than the old image footprint (centred on it) so the
+   bigger, slowly rotating spheres and their glow are never clipped */
+.orb-canvas {
+  width: 140%;
+  margin: calc(-20% / 1.3746) 0 0 -20%;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .hero-orb .orb-canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+}

@@ -752,10 +752,17 @@ document.querySelectorAll(".js-year").forEach((node) => {
 
   const IMG_ASPECT = 2000 / 1455 // footprint of the old image, so positions match
   // centres/radii in "image space" (x: 0..IMG_ASPECT, y: 0..1, y downward)
+  // The pair sits around a shared centre and slowly rotates as a whole (like the
+  // original image did), each sphere also floating on its own path.
+  const MID = [0.4975 * IMG_ASPECT, 0.5]
+  const SPREAD = 1.32 // a bit more space between the two spheres
   const SPHERES = [
-    { c: [0.44 * IMG_ASPECT, 0.69], r: 0.198, fx: 0.43, fy: 0.31, ax: 0.016, ay: 0.022, ph: 0.0 }, // violet / hot pink
-    { c: [0.555 * IMG_ASPECT, 0.31], r: 0.198, fx: 0.29, fy: 0.47, ax: 0.020, ay: 0.016, ph: 2.1 }, // red / magenta
+    { off: [-0.0575 * IMG_ASPECT * SPREAD, 0.19 * SPREAD], r: 0.238, fx: 0.43, fy: 0.31, ax: 0.014, ay: 0.018, ph: 0.0 }, // pink-red, lower
+    { off: [0.0575 * IMG_ASPECT * SPREAD, -0.19 * SPREAD], r: 0.238, fx: 0.29, fy: 0.47, ax: 0.016, ay: 0.013, ph: 2.1 }, // red, upper
   ]
+  const PAIR_TURN = (Math.PI * 2) / 90 // one full, subtle turn every 90 seconds
+  // extra room around the drawing so the larger, rotating spheres are never clipped
+  const PAD = 1.4
 
   const gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false })
   if (!gl) return // very old browsers: the hero simply shows no spheres
@@ -774,6 +781,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
     uniform vec2 uC0;
     uniform vec2 uC1;
     uniform vec2 uR;
+    uniform float uRot;
 
     float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
     float noise(vec2 p) {
@@ -800,7 +808,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
       vec2 toM = uMouse - c;
       float lm = length(toM);
       vec2 dirM = toM / max(lm, 1e-4);
-      float pull = hover * 0.30 * R * smoothstep(3.2 * R, 0.25 * R, lm);
+      float pull = hover * 0.22 * R * smoothstep(3.2 * R, 0.25 * R, lm);
       float side = smoothstep(-R, R, dot(p, dirM));
       p -= dirM * pull * side * side;
 
@@ -808,7 +816,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
       p /= squash;
       float a = atan(p.y, p.x);
       float dm = length(p - toM * 0.7);
-      float ripple = hover * 0.022 * sin(dm * 34.0 - t * 6.0) * exp(-dm * 5.0);
+      float ripple = hover * 0.016 * sin(dm * 26.0 - t * 2.6) * exp(-dm * 4.0);
       float r = R * (1.0
         + 0.022 * sin(2.0 * a + t * 0.55 * spin + seed)
         + 0.015 * sin(3.0 * a - t * 0.4 + seed * 1.7)
@@ -818,9 +826,9 @@ document.querySelectorAll(".js-year").forEach((node) => {
       vec2 pn = p / r;
 
       // the light slowly circles inside; when hovered it turns toward the cursor
-      float ang = baseAng + 0.32 * sin(t * 0.33 * spin + seed);
+      float ang = baseAng + uRot + 0.28 * sin(t * 0.22 * spin + seed);
       vec2 ldir = vec2(cos(ang), sin(ang));
-      ldir = normalize(mix(ldir, dirM, hover * 0.55));
+      ldir = normalize(mix(ldir, dirM, hover * 0.4));
       float s = dot(pn, ldir);                  // -1 dark side .. 1 lit side
       float lit = clamp(s * 0.5 + 0.5, 0.0, 1.0);
 
@@ -890,7 +898,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0)
 
   const U = {}
-  for (const name of ["uRes", "uTime", "uScale", "uMouse", "uHover", "uC0", "uC1", "uR"]) U[name] = gl.getUniformLocation(prog, name)
+  for (const name of ["uRes", "uTime", "uScale", "uMouse", "uHover", "uC0", "uC1", "uR", "uRot"]) U[name] = gl.getUniformLocation(prog, name)
   gl.uniform2f(U.uR, SPHERES[0].r, SPHERES[1].r)
 
   // size the drawing buffer to the canvas (capped pixel ratio for performance)
@@ -903,7 +911,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
       canvas.width = w
       canvas.height = h
     }
-    scale = window.matchMedia("(max-width: 600px)").matches ? 1.5 : 1
+    scale = window.matchMedia("(max-width: 600px)").matches ? 1.08 : 1 / PAD
   }
   new ResizeObserver(resize).observe(canvas)
 
@@ -929,7 +937,10 @@ document.querySelectorAll(".js-year").forEach((node) => {
 
   function centre(i, t) {
     const s = SPHERES[i]
-    return [s.c[0] + Math.sin(t * s.fx + s.ph) * s.ax, s.c[1] + Math.cos(t * s.fy + s.ph * 0.7) * s.ay]
+    const a = t * PAIR_TURN
+    const ox = s.off[0] * Math.cos(a) - s.off[1] * Math.sin(a)
+    const oy = s.off[0] * Math.sin(a) + s.off[1] * Math.cos(a)
+    return [MID[0] + ox + Math.sin(t * s.fx + s.ph) * s.ax, MID[1] + oy + Math.cos(t * s.fy + s.ph * 0.7) * s.ay]
   }
 
   // only animate while the hero is on screen and the tab is visible
@@ -948,14 +959,16 @@ document.querySelectorAll(".js-year").forEach((node) => {
     if (!reduce) clock += dt
 
     // ease the cursor and the hover strength so shapes stretch and relax smoothly
-    mouse[0] += (target[0] - mouse[0]) * 0.14
-    mouse[1] += (target[1] - mouse[1]) * 0.14
+    mouse[0] += (target[0] - mouse[0]) * 0.05
+    mouse[1] += (target[1] - mouse[1]) * 0.05
     const c0 = centre(0, clock)
     const c1 = centre(1, clock)
     ;[c0, c1].forEach((c, i) => {
       const dist = Math.hypot(target[0] - c[0], target[1] - c[1])
       const want = dist < SPHERES[i].r * 1.9 ? 1 : 0
-      hover[i] += (want - hover[i]) * (want ? 0.08 : 0.04)
+      // ease in/out with a smooth curve rather than a linear chase
+      const k = want ? 0.028 : 0.018
+      hover[i] += (want - hover[i]) * k * (1.2 - Math.abs(want - hover[i]) * 0.6)
     })
 
     gl.viewport(0, 0, canvas.width, canvas.height)
@@ -965,7 +978,9 @@ document.querySelectorAll(".js-year").forEach((node) => {
     gl.uniform1f(U.uTime, clock)
     gl.uniform1f(U.uScale, scale)
     gl.uniform2f(U.uMouse, mouse[0], mouse[1])
-    gl.uniform2f(U.uHover, hover[0], hover[1])
+    const ease = (x) => x * x * (3 - 2 * x) // smoothstep easing on the hover strength
+    gl.uniform2f(U.uHover, ease(hover[0]), ease(hover[1]))
+    gl.uniform1f(U.uRot, clock * PAIR_TURN)
     gl.uniform2f(U.uC0, c0[0], c0[1])
     gl.uniform2f(U.uC1, c1[0], c1[1])
     gl.drawArrays(gl.TRIANGLES, 0, 6)
