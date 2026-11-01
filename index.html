@@ -14,6 +14,30 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- First-visit intro: the logo writes itself, then flies into the hero -->
+    <div id="intro" class="intro" aria-hidden="true">
+      <svg class="intro-logo" viewBox="0 0 1361.68 402.66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="intro-edge" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#fff" />
+            <stop offset="0.86" stop-color="#fff" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+          <mask id="intro-mask" maskUnits="userSpaceOnUse" x="-40" y="-40" width="1442" height="483">
+            <rect class="intro-sweep" x="-760" y="-40" width="2162" height="483" fill="url(#intro-edge)" />
+          </mask>
+        </defs>
+        <g mask="url(#intro-mask)">
+<path d="M1275.8 271.917C1275.8 277.712 1276.15 283.739 1276.84 289.998C1277.77 296.257 1279.16 302.053 1281.01 307.384C1283.1 312.716 1285.77 317.121 1289.01 320.598C1292.49 324.075 1296.78 325.813 1301.88 325.813C1308.37 325.813 1313.93 324.075 1318.57 320.598C1323.43 316.889 1328.42 311.325 1333.52 303.907C1335.37 301.357 1337.34 299.619 1339.43 298.691C1341.75 297.764 1343.95 297.3 1346.04 297.3C1350.44 297.3 1354.15 298.691 1357.16 301.473C1360.18 304.255 1361.68 307.964 1361.68 312.6C1361.68 315.382 1360.99 317.932 1359.6 320.25C1356.82 324.423 1353.45 328.827 1349.51 333.463C1345.8 338.1 1341.4 342.388 1336.3 346.329C1331.43 350.038 1325.98 353.167 1319.96 355.717C1313.93 358.267 1307.44 359.542 1300.49 359.542C1290.98 359.542 1282.29 356.645 1274.41 350.849C1266.52 344.822 1260.96 336.941 1257.72 327.204C1254.01 336.013 1248.33 342.736 1240.68 347.372C1233.26 351.777 1224.68 353.979 1214.95 353.979C1205.44 353.979 1197.44 351.429 1190.95 346.329C1184.7 341.229 1179.71 335.202 1176 328.248C1172.06 321.061 1169.4 313.643 1168 305.993C1166.38 298.344 1165.57 291.853 1165.57 286.521C1165.57 279.103 1166.73 272.033 1169.05 265.31C1171.37 258.356 1174.61 252.329 1178.78 247.229C1182.96 241.897 1187.94 237.724 1193.74 234.711C1199.76 231.697 1206.49 230.191 1213.9 230.191C1220.86 230.191 1226.88 231.697 1231.98 234.711C1237.08 237.493 1241.26 240.274 1244.5 243.056C1245.43 235.175 1246.59 227.177 1247.98 219.063C1249.6 210.95 1251.11 202.373 1252.5 193.332C1254.12 184.06 1255.4 174.208 1256.33 163.776C1257.48 153.113 1258.06 141.406 1258.06 128.656C1258.06 120.311 1257.72 111.154 1257.02 101.186C1256.56 90.9867 1255.86 80.7869 1254.93 70.5871C1254.24 60.1555 1253.31 49.9558 1252.15 39.9878C1251.23 29.788 1250.3 20.3996 1249.37 11.8225C1249.37 7.88167 1250.99 4.98401 1254.24 3.1295C1257.48 1.04317 1261.66 0 1266.76 0C1270.47 0 1273.6 2.66585 1276.15 7.99756C1278.93 13.0975 1281.13 19.7041 1282.75 27.8176C1284.61 35.9311 1286 44.9718 1286.92 54.9397C1288.08 64.9077 1288.89 74.6439 1289.36 84.1482C1290.05 93.6525 1290.4 102.461 1290.4 110.575C1290.63 118.457 1290.75 124.484 1290.75 128.656C1290.75 141.87 1289.94 153.924 1288.32 164.819C1286.92 175.483 1285.3 186.146 1283.45 196.809C1281.59 207.473 1279.85 218.832 1278.23 230.886C1276.61 242.708 1275.8 256.385 1275.8 271.917ZM1240.33 281.653C1239.17 275.626 1236.51 270.41 1232.33 266.006C1228.16 261.601 1222.71 259.399 1215.99 259.399C1213.44 259.399 1211.12 260.21 1209.04 261.833C1206.95 263.456 1205.09 265.658 1203.47 268.44C1202.08 271.221 1200.92 274.467 1199.99 278.176C1199.3 281.653 1198.95 285.246 1198.95 288.955C1198.95 293.823 1199.42 298.46 1200.34 302.864C1201.5 307.268 1203.12 311.209 1205.21 314.686C1207.3 318.164 1209.96 320.945 1213.21 323.032C1216.45 325.118 1220.28 326.161 1224.68 326.161C1227.7 326.161 1230.25 325.234 1232.33 323.379C1234.65 321.293 1236.51 318.743 1237.9 315.73C1239.29 312.716 1240.21 309.355 1240.68 305.646C1241.37 301.705 1241.72 297.996 1241.72 294.519C1241.72 291.969 1241.61 289.651 1241.37 287.564C1241.14 285.478 1240.79 283.508 1240.33 281.653Z" fill="white"/>
+<path d="M1054.05 293.126C1050.81 293.126 1047.68 294.054 1044.66 295.908C1041.65 297.763 1038.87 300.081 1036.32 302.863C1033.77 305.644 1031.45 308.658 1029.36 311.903C1027.51 315.149 1026 318.162 1024.84 320.944C1023.45 324.421 1022.18 328.246 1021.02 332.419C1019.86 336.591 1018.24 340.416 1016.15 343.893C1014.29 347.371 1011.86 350.268 1008.85 352.586C1005.83 354.905 1001.78 356.064 996.677 356.064C992.04 356.064 987.868 354.673 984.159 351.891C980.45 349.109 978.595 345.748 978.595 341.807C978.595 335.548 978.943 329.289 979.638 323.03C980.334 316.54 980.682 309.933 980.682 303.21C980.682 299.501 980.45 295.676 979.986 291.736C979.754 287.563 979.175 283.854 978.248 280.608C977.552 277.363 976.393 274.697 974.77 272.611C973.38 270.525 971.641 269.481 969.555 269.481C962.832 269.481 957.037 270.872 952.169 273.654C947.301 276.436 942.78 280.261 938.608 285.129C934.435 289.765 930.378 295.213 926.437 301.472C922.497 307.731 918.092 314.337 913.224 321.292C911.37 323.842 909.283 325.58 906.965 326.508C904.647 327.435 902.561 327.898 900.706 327.898C897.693 327.898 895.027 327.203 892.709 325.812C890.391 324.189 888.652 322.219 887.493 319.901C886.102 317.583 885.407 315.033 885.407 312.251C885.175 309.469 885.986 306.687 887.841 303.906C893.404 294.401 898.852 285.708 904.183 277.827C909.747 269.945 915.774 263.107 922.265 257.311C928.756 251.516 935.942 247.111 943.823 244.098C951.937 240.853 961.441 239.23 972.336 239.23C978.827 239.23 984.275 240.389 988.679 242.707C993.084 244.793 996.677 247.807 999.458 251.748C1002.24 255.457 1004.33 259.861 1005.72 264.961C1007.11 269.829 1008.27 275.161 1009.19 280.956C1015.92 275.625 1023.34 271.22 1031.45 267.743C1039.79 264.266 1048.6 262.527 1057.88 262.527C1064.37 262.527 1070.28 263.802 1075.61 266.352C1080.94 268.902 1085.92 272.263 1090.56 276.436C1095.2 280.608 1099.6 285.477 1103.77 291.04C1107.95 296.604 1112 302.515 1115.94 308.774C1120.58 315.728 1124.75 320.828 1128.46 324.073C1132.4 327.087 1136.11 328.594 1139.59 328.594C1144.46 328.594 1149.09 326.276 1153.5 321.639C1158.13 317.003 1162.77 311.208 1167.41 304.253C1168.8 301.935 1170.65 300.197 1172.97 299.038C1175.29 297.879 1177.72 297.299 1180.27 297.299C1183.29 297.299 1185.72 297.879 1187.57 299.038C1189.66 300.197 1191.17 301.588 1192.09 303.21C1193.25 304.833 1194.07 306.572 1194.53 308.426C1194.99 310.049 1195.22 311.44 1195.22 312.599C1195.22 313.758 1195.11 315.033 1194.88 316.424C1194.88 317.583 1194.64 318.394 1194.18 318.858C1191.4 323.958 1188.27 328.942 1184.79 333.81C1181.32 338.678 1177.37 342.966 1172.97 346.675C1168.57 350.384 1163.58 353.398 1158.02 355.716C1152.45 358.034 1146.31 359.193 1139.59 359.193C1131.24 359.193 1124.06 357.57 1118.03 354.325C1112.24 351.08 1107.02 347.023 1102.38 342.155C1097.98 337.287 1094.04 331.955 1090.56 326.16C1087.08 320.364 1083.61 315.033 1080.13 310.165C1076.65 305.297 1072.83 301.24 1068.65 297.994C1064.48 294.749 1059.61 293.126 1054.05 293.126Z" fill="white"/>
+<path d="M758.181 324.075C754.936 320.829 753.313 316.889 753.313 312.252C753.313 309.471 754.124 306.921 755.747 304.603C757.138 302.053 758.761 299.503 760.615 296.953C762.238 294.403 763.86 291.737 765.483 288.955C766.874 285.942 767.569 282.696 767.569 279.219C767.569 272.96 768.497 268.324 770.351 265.31C772.438 262.065 776.494 260.442 782.521 260.442C786.694 260.442 789.939 260.906 792.257 261.833C794.576 262.528 796.43 263.688 797.821 265.31C799.212 266.701 800.255 268.44 800.95 270.526C801.878 272.612 802.689 274.815 803.385 277.133C805.007 282.464 806.862 288.376 808.948 294.866C811.266 301.125 814.164 306.921 817.641 312.252C821.118 317.584 825.407 322.104 830.507 325.813C835.838 329.291 842.561 331.029 850.674 331.029C856.701 331.029 861.917 329.291 866.322 325.813C870.958 322.336 875.131 318.511 878.84 314.339C882.78 309.934 886.374 305.993 889.619 302.516C893.096 299.039 896.689 297.3 900.398 297.3C903.412 297.3 906.773 298.344 910.482 300.43C914.191 302.284 916.046 306.225 916.046 312.252C916.046 313.875 915.814 315.614 915.35 317.468C914.887 319.091 913.959 320.829 912.568 322.684C905.614 333.116 896.457 342.156 885.099 349.806C873.972 357.224 861.454 360.933 847.545 360.933C832.245 360.933 819.843 356.876 810.339 348.763C801.066 340.649 792.605 329.638 784.955 315.73L779.74 323.032C778.349 324.886 776.726 326.161 774.872 326.857C773.017 327.552 771.163 327.9 769.308 327.9C766.758 327.9 764.44 327.552 762.354 326.857C760.267 325.929 758.876 325.002 758.181 324.075Z" fill="white"/>
+<path d="M416.944 250.011C413.698 250.011 410.105 252.329 406.165 256.966C402.224 261.37 398.051 267.05 393.647 274.004C389.474 280.958 385.07 288.724 380.433 297.301C375.797 305.647 371.045 313.644 366.177 321.294C365.25 322.685 363.627 324.192 361.309 325.814C359.222 327.205 356.557 327.901 353.311 327.901C348.675 327.901 345.082 326.278 342.532 323.033C339.75 319.555 338.359 315.962 338.359 312.253C338.359 309.471 339.055 306.806 340.446 304.256C342.532 301.01 345.198 296.606 348.443 291.042C351.457 285.247 355.05 279.104 359.222 272.613C363.395 265.891 367.799 259.168 372.436 252.445C377.304 245.723 382.288 239.696 387.388 234.364C392.719 228.8 398.051 224.28 403.383 220.803C408.946 217.326 414.51 215.587 420.073 215.587C425.173 215.587 429.462 217.094 432.939 220.107C436.416 223.121 439.198 227.062 441.284 231.93C443.37 236.566 444.877 241.782 445.804 247.577C446.732 253.141 447.195 258.588 447.195 263.92C447.195 270.179 446.616 275.859 445.457 280.958C447.775 277.249 450.441 271.802 453.454 264.616C456.7 257.429 460.409 250.359 464.581 243.405C468.754 236.218 473.506 230.075 478.838 224.976C484.401 219.644 490.544 216.978 497.267 216.978C508.394 216.978 517.666 220.455 525.084 227.41C532.502 234.132 538.53 242.13 543.166 251.402C547.802 260.443 551.279 269.715 553.597 279.22C555.916 288.492 557.654 295.679 558.813 300.778C561.131 291.97 563.565 282.233 566.115 271.57C568.897 260.907 572.258 251.055 576.199 242.014C580.14 232.741 585.124 225.091 591.151 219.064C597.178 212.805 604.828 209.676 614.101 209.676C624.069 209.676 632.762 212.342 640.18 217.673C647.598 223.005 654.32 229.728 660.347 237.841C666.606 245.955 672.402 254.648 677.733 263.92C683.297 273.193 688.86 281.886 694.424 289.999C699.987 298.113 705.898 304.835 712.157 310.167C718.648 315.499 726.066 318.164 734.411 318.164C737.657 318.164 741.25 317.005 745.191 314.687C749.132 312.369 752.725 308.776 755.97 303.908C759.447 299.503 763.736 297.301 768.836 297.301C773.472 297.301 777.065 298.924 779.615 302.169C782.397 305.183 783.788 308.66 783.788 312.601C783.788 315.846 782.976 318.744 781.354 321.294C776.717 328.712 771.038 335.203 764.315 340.766C757.593 346.098 749.016 348.764 738.584 348.764C725.834 348.764 714.707 346.214 705.203 341.114C695.699 335.782 687.353 329.176 680.167 321.294C672.981 313.18 666.606 304.603 661.043 295.563C655.479 286.29 650.379 277.713 645.743 269.831C641.339 261.718 637.05 255.111 632.877 250.011C628.705 244.68 624.3 242.014 619.664 242.014C616.419 242.014 613.289 244.216 610.276 248.62C607.494 253.025 604.712 258.704 601.93 265.659C599.149 272.613 596.483 280.495 593.933 289.304C591.615 298.113 589.297 306.922 586.978 315.73C584.66 324.307 582.458 332.537 580.372 340.419C578.286 348.3 576.315 354.791 574.461 359.891C573.302 362.673 571.795 365.223 569.94 367.541C568.318 370.091 565.536 371.366 561.595 371.366C556.959 371.366 553.018 369.279 549.773 365.107C548.15 363.252 546.295 359.079 544.209 352.589C542.123 345.866 539.805 338.216 537.255 329.639C534.937 320.83 532.271 311.674 529.257 302.169C526.244 292.433 523.114 283.508 519.869 275.395C516.855 267.281 513.61 260.675 510.133 255.575C506.887 250.243 503.642 247.577 500.396 247.577C498.31 247.577 495.644 250.243 492.399 255.575C489.385 260.907 485.792 267.629 481.62 275.743C477.679 283.624 473.274 292.317 468.406 301.822C463.77 311.094 458.902 319.787 453.802 327.901C448.702 335.782 443.486 342.389 438.155 347.721C432.823 353.052 427.607 355.718 422.507 355.718C417.176 355.718 413.119 354.907 410.337 353.284C407.555 351.43 406.165 348.068 406.165 343.2C406.165 339.028 406.976 334.16 408.599 328.596C410.221 322.801 411.96 316.542 413.814 309.819C415.901 303.097 417.755 296.142 419.378 288.956C421.001 281.77 421.812 274.468 421.812 267.05C421.812 262.645 421.464 258.704 420.769 255.227C420.073 251.75 418.798 250.011 416.944 250.011Z" fill="white"/>
+<path d="M276.813 224.626C279.131 235.753 279.131 245.837 276.813 254.877C274.495 263.686 270.438 271.916 264.643 279.565C259.079 286.983 252.125 293.822 243.78 300.081C235.434 306.34 226.51 312.367 217.005 318.162C219.787 322.799 223.032 326.623 226.741 329.637C230.682 332.651 234.855 334.969 239.259 336.591C243.664 338.214 248.184 339.373 252.82 340.069C257.688 340.532 262.441 340.764 267.077 340.764C274.263 340.764 281.102 339.605 287.592 337.287C294.083 334.969 300.458 331.955 306.717 328.246C312.976 324.537 319.003 320.365 324.798 315.728C330.825 310.86 336.968 305.992 343.227 301.124C345.777 299.27 349.023 297.995 352.964 297.299C356.904 296.604 360.497 297.879 363.743 301.124C365.597 302.747 366.872 304.601 367.568 306.688C368.263 308.774 368.611 310.86 368.611 312.946C368.611 315.033 368.263 317.003 367.568 318.858C366.872 320.712 365.945 322.219 364.786 323.378C350.877 339.373 336.157 350.964 320.626 358.15C305.094 365.336 287.36 369.741 267.425 371.363C255.37 372.059 243.78 370.668 232.653 367.191C221.757 363.945 212.021 358.845 203.444 351.891C195.099 344.937 188.376 336.244 183.277 325.812C177.945 315.381 175.163 303.558 174.931 290.345C174.699 278.986 175.743 267.975 178.061 257.311C180.379 246.416 184.088 236.796 189.188 228.451C194.288 219.873 200.663 212.919 208.312 207.587C215.962 202.256 225.003 199.242 235.434 198.547C241.925 198.083 247.605 198.547 252.473 199.938C257.341 201.097 261.397 202.951 264.643 205.501C267.888 207.819 270.438 210.717 272.293 214.194C274.379 217.439 275.886 220.917 276.813 224.626ZM233.348 229.146C228.248 230.769 223.96 234.014 220.482 238.882C217.005 243.518 214.224 248.85 212.137 254.877C210.283 260.904 209.008 267.279 208.312 274.002C207.849 280.724 208.081 286.868 209.008 292.431C214.108 288.954 219.092 285.129 223.96 280.956C228.828 276.784 233 272.379 236.478 267.743C240.187 263.107 243.084 258.239 245.171 253.139C247.257 247.807 248.184 242.475 247.952 237.144C247.489 233.435 245.75 230.885 242.737 229.494C239.723 228.103 236.593 227.987 233.348 229.146Z" fill="white"/>
+<path d="M18.7768 307.037C14.836 293.36 11.7065 280.726 9.38842 269.135C6.83848 257.313 4.86807 245.838 3.47719 234.711C2.08632 223.584 1.15906 212.573 0.695438 201.678C0.231813 190.782 0 179.423 0 167.601C0 159.256 0.231813 149.983 0.695438 139.783C1.15906 129.352 2.08632 118.92 3.47719 108.489C4.86807 97.8252 6.83848 87.6255 9.38842 77.8893C11.9384 67.9213 15.2996 59.1124 19.4723 51.4626C23.6449 43.581 28.8607 37.322 35.1196 32.6857C41.1468 28.0495 48.333 25.7313 56.6782 25.7313C63.169 25.7313 68.8484 28.5131 73.7165 34.0766C78.8164 39.6401 82.989 47.1741 86.2344 56.6784C89.7116 66.1827 92.2615 77.1939 93.8842 89.7118C95.7387 102.23 96.6659 115.559 96.6659 129.7C96.6659 148.94 95.5069 167.717 93.1887 186.03C90.8706 204.343 87.7411 221.729 83.8003 238.188C80.0913 254.415 75.571 269.367 70.2393 283.044C64.9076 296.721 59.3441 308.427 53.5488 318.164C54.9396 321.873 56.7941 326.857 59.1123 333.116C61.4304 339.143 64.5599 345.054 68.5007 350.849C72.6733 356.645 77.7732 361.629 83.8003 365.801C90.0593 370.206 97.7091 372.408 106.75 372.408C114.4 372.408 121.586 370.206 128.308 365.801C135.263 361.397 141.869 355.949 148.128 349.458C154.387 342.736 160.183 335.434 165.514 327.552C171.078 319.67 176.294 312.136 181.162 304.95C182.321 302.864 184.059 301.125 186.377 299.734C188.696 298.112 191.246 297.3 194.027 297.3C197.273 297.3 200.634 298.575 204.111 301.125C207.588 303.444 209.327 307.268 209.327 312.6C209.327 315.382 208.632 317.932 207.241 320.25C204.691 324.886 200.634 331.725 195.07 340.765C189.739 349.806 182.784 358.963 174.207 368.235C165.63 377.508 155.662 385.505 144.303 392.228C133.176 399.182 120.659 402.66 106.75 402.66C94.9273 402.66 84.4958 400.805 75.4551 397.096C66.4144 393.387 58.4168 387.592 51.4624 379.71C44.7399 372.06 38.7127 362.208 33.381 350.154C28.0493 338.1 23.1813 323.727 18.7768 307.037ZM52.8533 55.6352C50.767 55.6352 48.6807 57.7216 46.5944 61.8942C44.5081 65.835 42.5376 71.1667 40.6831 77.8893C38.8286 84.3801 37.206 91.7981 35.8151 100.143C34.1924 108.489 32.8015 116.95 31.6424 125.527C30.4834 133.872 29.672 141.986 29.2084 149.867C28.513 157.517 28.1653 164.124 28.1653 169.687C28.1653 177.337 28.3971 186.03 28.8607 195.766C29.3243 205.502 30.1357 215.47 31.2947 225.67C32.222 235.638 33.4969 245.49 35.1196 255.226C36.7423 264.731 38.7127 273.308 41.0309 280.958C44.7399 272.149 48.1012 262.413 51.1147 251.749C54.1283 240.854 56.6782 229.727 58.7645 218.368C61.0827 207.009 62.8213 195.534 63.9803 183.944C65.1394 172.353 65.7189 161.226 65.7189 150.563C65.7189 139.668 65.3712 128.656 64.6758 117.529C64.2121 106.171 63.4008 95.9707 62.2417 86.93C61.0827 77.6575 59.6918 70.1236 58.0691 64.3282C56.6782 58.5329 54.9396 55.6352 52.8533 55.6352Z" fill="white"/>
+</g>
+        <circle class="intro-pen" cx="0" cy="260" r="16" />
+      </svg>
+    </div>
     <!-- Page transition curtain (also covers the first load) -->
     <div id="page-curtain" class="page-curtain is-covering" aria-hidden="true">
       <svg class="curtain-logo" viewBox="-6 -6 219 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +48,7 @@
             <stop offset="1" stop-color="#fff" stop-opacity="0" />
           </linearGradient>
           <mask id="write-mask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="219" height="74">
-            <rect class="write-sweep" x="-60" y="-6" width="280" height="74" fill="url(#write-edge)" />
+            <rect class="write-sweep" x="-130" y="-6" width="350" height="74" fill="url(#write-edge)" />
           </mask>
         </defs>
         <g class="write-ink" mask="url(#write-mask)">
@@ -105,13 +129,12 @@
           src="assets/19587.png"
           alt="A collection of food and hospitality mobile interface designs"
           data-parallax="0.08"
-          data-parallax-max="55"
-        />
+          data-parallax-max="55" loading="lazy" />
       </section>
 
       <section class="manifesto">
         <div class="manifesto-title">
-          <img src="assets/1ea9e.png" alt="" data-parallax="0.1" data-parallax-max="55" />
+          <img src="assets/1ea9e.png" alt="" data-parallax="0.1" data-parallax-max="55" loading="lazy" />
           <h2>Focused.<br />Fluid.<br />Functional.</h2>
         </div>
         <div class="manifesto-copy">
@@ -119,7 +142,7 @@
             We simplify the complex and elevate the ordinary. Our design
             services are tailored to help brands connect and users stay.
           </p>
-          <img src="assets/c54e2.png" alt="" data-parallax="0.12" data-parallax-max="60" />
+          <img src="assets/c54e2.png" alt="" data-parallax="0.12" data-parallax-max="60" loading="lazy" />
         </div>
       </section>
 
@@ -154,7 +177,7 @@
             </p>
             <a href="#ai-sprint">Explore AI Sprint Studio</a>
           </div>
-          <img class="service-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" />
+          <img class="service-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" loading="lazy" />
         </div>
 
         <div class="service-row">
@@ -168,7 +191,7 @@
             </p>
             <a href="#web3">Explore Blockchain Services</a>
           </div>
-          <img class="service-art cubes" src="assets/f9da8.png" alt="" data-parallax="0.08" />
+          <img class="service-art cubes" src="assets/f9da8.png" alt="" data-parallax="0.08" loading="lazy" />
         </div>
       </section>
 
@@ -202,16 +225,16 @@
         <div class="photo-marquee reveal" aria-label="Life at Lemind">
           <div class="photo-track">
             <div class="photo-set">
-              <img class="p-a" src="assets/46a1f.png" alt="Team arranging design materials on a table" />
-              <img class="p-b" src="assets/ff0a2.png" alt="Designer pinning notes to a board" />
-              <img class="p-c" src="assets/b7a5b.png" alt="Designer sketching at a desk" />
-              <img class="p-d" src="assets/1a696.png" alt="Sticky-note wireframes on a corkboard" />
+              <img class="p-a" src="assets/46a1f.png" alt="Team arranging design materials on a table" loading="lazy" />
+              <img class="p-b" src="assets/ff0a2.png" alt="Designer pinning notes to a board" loading="lazy" />
+              <img class="p-c" src="assets/b7a5b.png" alt="Designer sketching at a desk" loading="lazy" />
+              <img class="p-d" src="assets/1a696.png" alt="Sticky-note wireframes on a corkboard" loading="lazy" />
             </div>
             <div class="photo-set" aria-hidden="true">
-              <img class="p-a" src="assets/46a1f.png" alt="" />
-              <img class="p-b" src="assets/ff0a2.png" alt="" />
-              <img class="p-c" src="assets/b7a5b.png" alt="" />
-              <img class="p-d" src="assets/1a696.png" alt="" />
+              <img class="p-a" src="assets/46a1f.png" alt="" loading="lazy" />
+              <img class="p-b" src="assets/ff0a2.png" alt="" loading="lazy" />
+              <img class="p-c" src="assets/b7a5b.png" alt="" loading="lazy" />
+              <img class="p-d" src="assets/1a696.png" alt="" loading="lazy" />
             </div>
           </div>
         </div>
@@ -260,7 +283,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -268,7 +291,7 @@
     <main id="services-page" class="services-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -284,7 +307,7 @@
             culture, and innovation—to craft meaningful experiences.
           </p>
         </div>
-        <img class="services-flower reveal-scale" style="--delay: 250ms" src="assets/0d3a1.png" alt="" data-parallax="0.1" />
+        <img class="services-flower reveal-scale" style="--delay: 250ms" src="assets/0d3a1.png" alt="" data-parallax="0.1" loading="lazy" />
       </section>
 
       <section class="services-list" id="services-list" aria-label="Services"></section>
@@ -304,7 +327,7 @@
             </p>
             <a href="#ai-sprint">Explore AI Sprint Studio</a>
           </div>
-          <img class="studio-feature-art sprint-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" />
+          <img class="studio-feature-art sprint-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" loading="lazy" />
         </article>
 
         <article class="studio-feature">
@@ -320,7 +343,7 @@
             </p>
             <a href="#web3">Explore Blockchain Services</a>
           </div>
-          <img class="studio-feature-art crypto-art" src="assets/f9da8.png" alt="" data-parallax="0.08" />
+          <img class="studio-feature-art crypto-art" src="assets/f9da8.png" alt="" data-parallax="0.08" loading="lazy" />
         </article>
       </section>
 
@@ -348,7 +371,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -356,7 +379,7 @@
     <main id="about-page" class="services-page about-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -377,19 +400,19 @@
         <p class="about-label reveal">Lemind at a Glance.</p>
         <div class="glance-track">
           <div class="glance-row">
-            <img class="g-tall" src="assets/b7a5b.png" alt="Creative team member" />
-            <img class="g-short" src="assets/46a1f.png" alt="Collaborative design materials" />
-            <img class="g-mid" src="assets/ff0a2.png" alt="Designer working at a desk" />
-            <img class="g-tall" src="assets/1a696.png" alt="Design workshop notes" />
-            <img class="g-short" src="assets/517c2.png" alt="Inflight entertainment project" />
+            <img class="g-tall" src="assets/b7a5b.png" alt="Creative team member" loading="lazy" />
+            <img class="g-short" src="assets/46a1f.png" alt="Collaborative design materials" loading="lazy" />
+            <img class="g-mid" src="assets/ff0a2.png" alt="Designer working at a desk" loading="lazy" />
+            <img class="g-tall" src="assets/1a696.png" alt="Design workshop notes" loading="lazy" />
+            <img class="g-short" src="assets/517c2.png" alt="Inflight entertainment project" loading="lazy" />
           </div>
           <!-- duplicate row for a seamless loop -->
           <div class="glance-row" aria-hidden="true">
-            <img class="g-tall" src="assets/b7a5b.png" alt="" />
-            <img class="g-short" src="assets/46a1f.png" alt="" />
-            <img class="g-mid" src="assets/ff0a2.png" alt="" />
-            <img class="g-tall" src="assets/1a696.png" alt="" />
-            <img class="g-short" src="assets/517c2.png" alt="" />
+            <img class="g-tall" src="assets/b7a5b.png" alt="" loading="lazy" />
+            <img class="g-short" src="assets/46a1f.png" alt="" loading="lazy" />
+            <img class="g-mid" src="assets/ff0a2.png" alt="" loading="lazy" />
+            <img class="g-tall" src="assets/1a696.png" alt="" loading="lazy" />
+            <img class="g-short" src="assets/517c2.png" alt="" loading="lazy" />
           </div>
         </div>
       </section>
@@ -452,9 +475,9 @@
 
       <section class="about-team">
         <div class="team-collage">
-          <img class="team-tall reveal-scale" src="assets/b7a5b.png" alt="Lemind team member" data-parallax="0.04" data-parallax-max="30" />
-          <img class="team-circle reveal-scale" style="--delay: 150ms" src="assets/ff0a2.png" alt="Designer at work" />
-          <img class="team-wide reveal-scale" style="--delay: 300ms" src="assets/46a1f.png" alt="Design materials on a table" data-parallax="0.07" data-parallax-max="40" />
+          <img class="team-tall reveal-scale" src="assets/b7a5b.png" alt="Lemind team member" data-parallax="0.04" data-parallax-max="30" loading="lazy" />
+          <img class="team-circle reveal-scale" style="--delay: 150ms" src="assets/ff0a2.png" alt="Designer at work" loading="lazy" />
+          <img class="team-wide reveal-scale" style="--delay: 300ms" src="assets/46a1f.png" alt="Design materials on a table" data-parallax="0.07" data-parallax-max="40" loading="lazy" />
         </div>
         <p class="team-copy reveal">
           Our agency is a global network of creative minds, each embracing their
@@ -494,7 +517,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -502,7 +525,7 @@
     <main id="ai-sprint" class="services-page sprint-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -528,7 +551,7 @@
         <div class="sprint-visual reveal-scale" style="--delay: 300ms" aria-hidden="true">
           <div class="web3-ring"></div>
           <div class="web3-ring r2"></div>
-          <span class="sphere-spin"><img class="ai-sphere" src="assets/ai-sphere.webp" alt="" /></span>
+          <span class="sphere-spin"><img class="ai-sphere" src="assets/ai-sphere.webp" alt="" loading="lazy" /></span>
           <span class="sprint-chip chip-1">Day 1 · Discover</span>
           <span class="sprint-chip chip-2">AI concepts ×12</span>
           <span class="sprint-chip chip-3">Prototype ready</span>
@@ -591,17 +614,17 @@
         </div>
         <div class="why-grid">
           <article class="why-card">
-            <img src="assets/d3b2b.svg" alt="" />
+            <img src="assets/d3b2b.svg" alt="" loading="lazy" />
             <h3>Lean product thinking</h3>
             <p>We frame the right problem first, map risky assumptions and focus the sprint on the questions that decide your product’s future.</p>
           </article>
           <article class="why-card">
-            <img src="assets/e9d80.svg" alt="" />
+            <img src="assets/e9d80.svg" alt="" loading="lazy" />
             <h3>AI-accelerated design</h3>
             <p>AI tools help us explore dozens of directions in hours—flows, copy, visuals and data—so your team picks from the best, not the first.</p>
           </article>
           <article class="why-card">
-            <img src="assets/4a08c.svg" alt="" />
+            <img src="assets/4a08c.svg" alt="" loading="lazy" />
             <h3>Validated with real users</h3>
             <p>Every sprint ends with a realistic prototype in front of real people, so decisions are backed by evidence, not opinions.</p>
           </article>
@@ -646,19 +669,19 @@
         </div>
         <div class="gallery-grid">
           <figure class="gal-large">
-            <img src="assets/46a1f.png" alt="Team mapping ideas with sticky notes" data-parallax="0.05" data-parallax-max="40" />
+            <img src="assets/46a1f.png" alt="Team mapping ideas with sticky notes" data-parallax="0.05" data-parallax-max="40" loading="lazy" />
             <figcaption>Mapping the problem space</figcaption>
           </figure>
           <figure class="gal-tall">
-            <img src="assets/b7a5b.png" alt="Designer sketching interface ideas" data-parallax="0.08" data-parallax-max="50" />
+            <img src="assets/b7a5b.png" alt="Designer sketching interface ideas" data-parallax="0.08" data-parallax-max="50" loading="lazy" />
             <figcaption>From sketch to screen</figcaption>
           </figure>
           <figure class="gal-small">
-            <img src="assets/ff0a2.png" alt="Pinning concepts to a board" data-parallax="0.04" data-parallax-max="30" />
+            <img src="assets/ff0a2.png" alt="Pinning concepts to a board" data-parallax="0.04" data-parallax-max="30" loading="lazy" />
             <figcaption>Choosing the strongest concept</figcaption>
           </figure>
           <figure class="gal-small">
-            <img src="assets/1a696.png" alt="Wireframes on a corkboard" data-parallax="0.06" data-parallax-max="40" />
+            <img src="assets/1a696.png" alt="Wireframes on a corkboard" data-parallax="0.06" data-parallax-max="40" loading="lazy" />
             <figcaption>Wireframes, fast</figcaption>
           </figure>
         </div>
@@ -718,7 +741,7 @@
 
       <!-- Final call to action -->
       <section class="sprint-cta">
-        <img class="sprint-cta-art" src="assets/0d3a1.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" />
+        <img class="sprint-cta-art" src="assets/0d3a1.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" loading="lazy" />
         <h2>Have a bold idea?<br /><em>Let’s sprint.</em></h2>
         <a class="sprint-btn primary big" href="#contact-page">Start your AI Sprint <span aria-hidden="true">→</span></a>
       </section>
@@ -747,7 +770,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -755,7 +778,7 @@
     <main id="web3" class="services-page sprint-page web3-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -782,7 +805,7 @@
         <div class="web3-visual reveal-scale" style="--delay: 300ms" aria-hidden="true">
           <div class="web3-ring"></div>
           <div class="web3-ring r2"></div>
-          <img class="web3-cubes" src="assets/f9da8.png" alt="" />
+          <img class="web3-cubes" src="assets/f9da8.png" alt="" loading="lazy" />
           <span class="sprint-chip w-chip-1">DeFi</span>
           <span class="sprint-chip w-chip-2">NFTs</span>
           <span class="sprint-chip w-chip-3">DAOs</span>
@@ -875,32 +898,32 @@
         </div>
         <div class="why-grid">
           <article class="why-card">
-            <img src="assets/8bd32.svg" alt="" />
+            <img src="assets/8bd32.svg" alt="" loading="lazy" />
             <h3>Web3 brand identity</h3>
             <p>Names, logos, visual systems and tone of voice that make your protocol feel credible, distinct and built to last.</p>
           </article>
           <article class="why-card">
-            <img src="assets/4a08c.svg" alt="" />
+            <img src="assets/4a08c.svg" alt="" loading="lazy" />
             <h3>Website &amp; landing pages</h3>
             <p>Visionary marketing sites that explain complex technology simply and turn curious visitors into believers.</p>
           </article>
           <article class="why-card">
-            <img src="assets/e9d80.svg" alt="" />
+            <img src="assets/e9d80.svg" alt="" loading="lazy" />
             <h3>dApp UX/UI design</h3>
             <p>Clean, intuitive interfaces for exchanges, DeFi protocols, staking and marketplaces—on desktop and mobile.</p>
           </article>
           <article class="why-card">
-            <img src="assets/d3b2b.svg" alt="" />
+            <img src="assets/d3b2b.svg" alt="" loading="lazy" />
             <h3>Wallet &amp; onboarding</h3>
             <p>Friction-free sign-up, wallet connection and first transactions designed for people who are new to crypto.</p>
           </article>
           <article class="why-card">
-            <img src="assets/71910.svg" alt="" />
+            <img src="assets/71910.svg" alt="" loading="lazy" />
             <h3>Token &amp; NFT launches</h3>
             <p>Launch pages, mint experiences, tokenomics visuals and pitch decks that build momentum from day one.</p>
           </article>
           <article class="why-card">
-            <img src="assets/147be.svg" alt="" />
+            <img src="assets/147be.svg" alt="" loading="lazy" />
             <h3>Dashboards &amp; data</h3>
             <p>Portfolio views, analytics and on-chain data turned into clear, real-time visuals people can act on.</p>
           </article>
@@ -944,7 +967,7 @@
       <!-- Featured case -->
       <section class="web3-case">
         <div class="case-media">
-          <img src="assets/674e3.png" alt="Simply Tokenized project presentation" data-parallax="0.07" data-parallax-max="60" />
+          <img src="assets/674e3.png" alt="Simply Tokenized project presentation" data-parallax="0.07" data-parallax-max="60" loading="lazy" />
           <span class="case-tag">Featured project</span>
         </div>
         <div class="case-copy">
@@ -1015,7 +1038,7 @@
 
       <!-- Final call to action -->
       <section class="sprint-cta web3-cta">
-        <img class="sprint-cta-art" src="assets/f9da8.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" />
+        <img class="sprint-cta-art" src="assets/f9da8.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" loading="lazy" />
         <h2>Building the future of finance?<br /><em>Let’s make it believable.</em></h2>
         <a class="sprint-btn primary big" href="#contact-page">Talk to our Web3 team <span aria-hidden="true">→</span></a>
       </section>
@@ -1044,7 +1067,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -1052,7 +1075,7 @@
     <main id="work-page" class="services-page work-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -1071,9 +1094,9 @@
         <div class="work-hero-art" aria-hidden="true">
           <span class="wh-glow"></span>
           <span class="wh-ring"></span>
-          <img class="wh-card wh-c1" src="assets/work-akay.webp" alt="" />
-          <img class="wh-card wh-c2" src="assets/work-simply.webp" alt="" />
-          <img class="wh-card wh-c3" src="assets/work-grocery.webp" alt="" />
+          <img class="wh-card wh-c1" src="assets/work-akay.webp" alt="" loading="lazy" />
+          <img class="wh-card wh-c2" src="assets/work-simply.webp" alt="" loading="lazy" />
+          <img class="wh-card wh-c3" src="assets/work-grocery.webp" alt="" loading="lazy" />
           <span class="wh-spark s1">✦</span>
           <span class="wh-spark s2">✦</span>
         </div>
@@ -1111,7 +1134,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -1119,7 +1142,7 @@
     <main id="case-simply" class="services-page case-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -1142,7 +1165,7 @@
       </section>
 
       <section class="case-cover" style="background-color: #00b5cb">
-        <img src="assets/work-simply.webp" alt="Simply Tokenized project presentation" data-parallax="0.06" data-parallax-max="50" />
+        <img src="assets/work-simply.webp" alt="Simply Tokenized project presentation" data-parallax="0.06" data-parallax-max="50" loading="lazy" />
       </section>
 
       <section class="case-block">
@@ -1177,8 +1200,8 @@
       </section>
 
       <section class="case-gallery">
-        <figure class="cg-wide" style="background-color: #00b5cb"><img src="assets/674e3.png" alt="Simply Tokenized detail" data-parallax="0.05" data-parallax-max="40" /></figure>
-        <figure class="cg-half" style="background-color: #00b5cb"><img src="assets/work-simply.webp" alt="Simply Tokenized screens" data-parallax="0.07" data-parallax-max="40" /></figure>
+        <figure class="cg-wide" style="background-color: #00b5cb"><img src="assets/674e3.png" alt="Simply Tokenized detail" data-parallax="0.05" data-parallax-max="40" loading="lazy" /></figure>
+        <figure class="cg-half" style="background-color: #00b5cb"><img src="assets/work-simply.webp" alt="Simply Tokenized screens" data-parallax="0.07" data-parallax-max="40" loading="lazy" /></figure>
         <figure class="cg-half cg-text">
           <p class="case-small-label">Design approach</p>
           <p>Every decision started with the people using the product—clear hierarchy, calm colour and content that explains itself.</p>
@@ -1203,7 +1226,7 @@
       <a class="case-next" href="#case-akay">
         <span class="case-next-label">Next project</span>
         <span class="case-next-title">Akay <span aria-hidden="true">→</span></span>
-        <img src="assets/work-akay.webp" alt="" />
+        <img src="assets/work-akay.webp" alt="" loading="lazy" />
       </a>
       </div>
 
@@ -1229,7 +1252,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -1237,7 +1260,7 @@
     <main id="case-akay" class="services-page case-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -1260,7 +1283,7 @@
       </section>
 
       <section class="case-cover" style="background-color: #c9d0d8">
-        <img src="assets/work-akay.webp" alt="Akay project presentation" data-parallax="0.06" data-parallax-max="50" />
+        <img src="assets/work-akay.webp" alt="Akay project presentation" data-parallax="0.06" data-parallax-max="50" loading="lazy" />
       </section>
 
       <section class="case-block">
@@ -1295,8 +1318,8 @@
       </section>
 
       <section class="case-gallery">
-        <figure class="cg-wide" style="background-color: #c9d0d8"><img src="assets/87248.png" alt="Akay detail" data-parallax="0.05" data-parallax-max="40" /></figure>
-        <figure class="cg-half" style="background-color: #c9d0d8"><img src="assets/work-akay.webp" alt="Akay screens" data-parallax="0.07" data-parallax-max="40" /></figure>
+        <figure class="cg-wide" style="background-color: #c9d0d8"><img src="assets/87248.png" alt="Akay detail" data-parallax="0.05" data-parallax-max="40" loading="lazy" /></figure>
+        <figure class="cg-half" style="background-color: #c9d0d8"><img src="assets/work-akay.webp" alt="Akay screens" data-parallax="0.07" data-parallax-max="40" loading="lazy" /></figure>
         <figure class="cg-half cg-text">
           <p class="case-small-label">Design approach</p>
           <p>Every decision started with the people using the product—clear hierarchy, calm colour and content that explains itself.</p>
@@ -1321,7 +1344,7 @@
       <a class="case-next" href="#case-simply">
         <span class="case-next-label">Next project</span>
         <span class="case-next-title">Simply Tokenized <span aria-hidden="true">→</span></span>
-        <img src="assets/work-simply.webp" alt="" />
+        <img src="assets/work-simply.webp" alt="" loading="lazy" />
       </a>
       </div>
 
@@ -1347,7 +1370,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -1355,7 +1378,7 @@
     <main id="contact-page" class="services-page contact-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>
@@ -1451,7 +1474,7 @@
             </div>
           </div>
         </div>
-        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" loading="lazy" />
       </footer>
     </main>
 
@@ -1459,7 +1482,7 @@
     <main id="thank-you" class="services-page thanks-page" hidden>
       <header class="services-header">
         <a href="#top" aria-label="Lemind home">
-          <img src="assets/f90a9.svg" alt="Lemind" />
+          <img src="assets/f90a9.svg" alt="Lemind" loading="lazy" />
         </a>
         <div class="header-actions">
           <a class="talk-link" href="#contact-page">Let’s Talk</a>

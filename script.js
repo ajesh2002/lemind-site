@@ -757,10 +757,51 @@ window.addEventListener("load", measureParallax)
 showPage()
 updateHeader()
 
-// First load: lift the curtain once fonts are ready (or after 1.2s at most).
-Promise.all([Promise.race([document.fonts.ready, wait(1200)]), wait(1350)]).then(async () => {
-  curtain.className = "page-curtain is-leaving"
-  if (!reduceMotion) playEntrance()
-  await wait(750)
-  curtain.className = "page-curtain"
-})
+// ---------- First load ----------
+const intro = document.getElementById("intro")
+const landingOnHome = !window.location.hash || window.location.hash === "#top"
+
+// Home page, first visit: the logo writes itself in the middle of the screen,
+// then grows and flies to the big header logo while the hero slides in.
+async function runIntro() {
+  const html = document.documentElement
+  html.classList.add("intro-running")
+  curtain.className = "page-curtain" // the panel is not used for this
+  window.scrollTo(0, 0)
+
+  await Promise.all([Promise.race([document.fonts.ready, wait(1500)]), wait(1950)]) // writing time
+
+  // FLIP: measure where the real header logo sits and fly the intro logo there
+  const logo = intro.querySelector(".intro-logo")
+  const from = logo.getBoundingClientRect()
+  const to = document.querySelector(".header-mark img").getBoundingClientRect()
+  const scale = to.width / from.width
+  const dx = to.left + to.width / 2 - (from.left + from.width / 2)
+  const dy = to.top + to.height / 2 - (from.top + from.height / 2)
+  logo.style.transition = "transform 1100ms cubic-bezier(0.7, 0, 0.2, 1)"
+  logo.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`
+  intro.classList.add("is-moving")
+
+  await wait(1120)
+  // hand over to the real logo (same place, same size: swap instantly), then the hero slides in
+  html.classList.add("intro-handover")
+  html.classList.remove("intro-running")
+  html.classList.add("intro-done")
+  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+  intro.remove()
+  html.classList.remove("intro-handover")
+  playEntrance()
+}
+
+if (intro && landingOnHome && !reduceMotion) {
+  runIntro()
+} else {
+  intro?.remove()
+  // Other pages / deep links: lift the curtain once fonts are ready
+  Promise.all([Promise.race([document.fonts.ready, wait(1200)]), wait(1350)]).then(async () => {
+    curtain.className = "page-curtain is-leaving"
+    if (!reduceMotion) playEntrance()
+    await wait(750)
+    curtain.className = "page-curtain"
+  })
+}
