@@ -6156,3 +6156,14 @@ footer.site-footer .footer-logo {
     font-size: 24px;
   }
 }
+
+.value h3 {
+  font-size: 34px; /* +6px */
+  line-height: 1.15;
+}
+
+@media (max-width: 600px) {
+  .value h3 {
+    font-size: 28px;
+  }
+}
