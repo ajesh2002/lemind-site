@@ -5898,3 +5898,16 @@ footer.site-footer .footer-logo {
 .project-wide .project-image img {
   object-position: center bottom;
 }
+
+/* divider lines: draw inside the section (some sections clip overflow) */
+.reveal-line::before {
+  top: 0;
+}
+
+/* About us (home) right-hand text: 16px, dimmed like the Crypto description */
+.about-copy > p:last-child {
+  max-width: clamp(220px, 20vw, 320px);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 16px;
+  line-height: 1.6;
+}
