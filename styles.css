@@ -5949,3 +5949,8 @@ footer.site-footer .footer-logo {
 .project-info .tags span + span::before {
   display: none;
 }
+
+/* project tagline under the title: dimmed */
+.project-info p {
+  color: rgba(255, 255, 255, 0.62);
+}
