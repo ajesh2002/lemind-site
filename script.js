@@ -1,3 +1,6 @@
+// Always start at the top: stop the browser restoring the previous scroll position on refresh
+if ("scrollRestoration" in history) history.scrollRestoration = "manual"
+
 // Lemind site: page switching, shrinking header, parallax.
 // Ported from the Figma Make React app to plain JavaScript.
 
@@ -757,6 +760,28 @@ window.addEventListener("load", measureParallax)
 showPage()
 updateHeader()
 
+// Home page always opens at the very top with the big logo in its starting position
+function resetHomeToTop() {
+  if (!landingOnHomeNow()) return
+  const html = document.documentElement
+  html.style.scrollBehavior = "auto"
+  window.scrollTo(0, 0)
+  html.style.scrollBehavior = ""
+  updateHeader()
+  measureParallax()
+}
+
+function landingOnHomeNow() {
+  return !window.location.hash || window.location.hash === "#top"
+}
+
+resetHomeToTop()
+window.addEventListener("load", resetHomeToTop)
+// coming back via the browser's back/forward cache
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) resetHomeToTop()
+})
+
 // ---------- First load ----------
 const intro = document.getElementById("intro")
 const landingOnHome = !window.location.hash || window.location.hash === "#top"
@@ -767,13 +792,14 @@ async function runIntro() {
   const html = document.documentElement
   html.classList.add("intro-running")
   curtain.className = "page-curtain" // the panel is not used for this
-  window.scrollTo(0, 0)
+  resetHomeToTop()
 
   await Promise.all([Promise.race([document.fonts.ready, wait(1500)]), wait(1950)]) // writing time
 
   // Fly the intro logo to the real header logo by animating its actual size and
   // position (not a scale transform), so the vector logo is redrawn crisp every frame
   const logo = intro.querySelector(".intro-logo")
+  resetHomeToTop() // make sure the header logo is in its starting place before measuring
   const to = document.querySelector(".header-mark img").getBoundingClientRect()
   logo.style.transition = [
     "left 1100ms cubic-bezier(0.7, 0, 0.2, 1)",
