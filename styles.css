@@ -6542,3 +6542,24 @@ html.intro-handover #menu-toggle {
     padding-top: 140px;
   }
 }
+
+/* ================= LIVE LIQUID SPHERES (replaces the static hero image) ================= */
+/* the canvas keeps the old image's footprint (2000 × 1455) so the layout is unchanged */
+.hero-orb {
+  mix-blend-mode: normal;
+}
+
+.orb-canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2000 / 1455;
+}
+
+@media (max-width: 600px) {
+  /* phones: the canvas fills the space between headline and notes */
+  .hero-orb .orb-canvas {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}

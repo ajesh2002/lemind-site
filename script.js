@@ -740,6 +740,249 @@ document.querySelectorAll(".js-year").forEach((node) => {
   node.textContent = new Date().getFullYear()
 })
 
+
+// ---------- Live liquid-glow spheres (home hero) ----------
+// Replaces the old static sphere image. Two independent spheres are drawn every
+// frame in a WebGL shader: organic wobbling outline, glossy fake-3D lighting,
+// swirling violet/magenta/pink/red light inside, dark purple shadows, soft glow.
+// Moving the cursor near one stretches it toward the cursor and ripples it like liquid.
+;(() => {
+  const canvas = document.querySelector(".orb-canvas")
+  if (!canvas) return
+
+  const IMG_ASPECT = 2000 / 1455 // footprint of the old image, so positions match
+  // centres/radii in "image space" (x: 0..IMG_ASPECT, y: 0..1, y downward)
+  const SPHERES = [
+    { c: [0.423 * IMG_ASPECT, 0.652], r: 0.168, fx: 0.43, fy: 0.31, ax: 0.016, ay: 0.022, ph: 0.0 }, // violet / hot pink
+    { c: [0.585 * IMG_ASPECT, 0.344], r: 0.16, fx: 0.29, fy: 0.47, ax: 0.020, ay: 0.016, ph: 2.1 }, // red / magenta
+  ]
+
+  const gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false })
+  if (!gl) return // very old browsers: the hero simply shows no spheres
+
+  const vert = `
+    attribute vec2 aPos;
+    void main() { gl_Position = vec4(aPos, 0.0, 1.0); }`
+
+  const frag = `
+    precision highp float;
+    uniform vec2 uRes;
+    uniform float uTime;
+    uniform float uScale;
+    uniform vec2 uMouse;
+    uniform vec2 uHover;
+    uniform vec2 uC0;
+    uniform vec2 uC1;
+    uniform vec2 uR;
+
+    float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float noise(vec2 p) {
+      vec2 i = floor(p), f = fract(p);
+      vec2 u = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
+    }
+    float fbm(vec2 p) {
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < 5; i++) { v += a * noise(p); p = p * 2.03 + vec2(17.3, 9.1); a *= 0.5; }
+      return v;
+    }
+
+    vec4 sphere(vec2 q, vec2 c, float R, float t, float spin, float seed, float hover, vec2 tint) {
+      vec2 p = q - c;
+
+      // magnetic stretch toward the cursor
+      vec2 toM = uMouse - c;
+      float lm = length(toM);
+      vec2 dirM = toM / max(lm, 1e-4);
+      float pull = hover * 0.42 * R * smoothstep(3.2 * R, 0.25 * R, lm);
+      float side = smoothstep(-R, R, dot(p, dirM));
+      p -= dirM * pull * side * side;
+
+      // liquid ripple spreading from the cursor
+      float dm = length(p - toM * 0.75);
+      float ripple = hover * sin(dm * 48.0 - t * 7.0) * exp(-dm * 7.0);
+
+      // organic, slowly deforming outline
+      float a = atan(p.y, p.x);
+      float n = noise(vec2(a * 1.4 + seed, t * 0.35 * spin)) - 0.5;
+      float r = R * (1.0
+        + 0.055 * sin(3.0 * a + t * 0.6 * spin + seed)
+        + 0.035 * sin(5.0 * a - t * 0.85 + seed * 2.0)
+        + 0.09 * n
+        + 0.045 * ripple);
+      float len = length(p);
+      float d = len - r;
+
+      // fake 3D surface for glossy lighting
+      float k = clamp(len / r, 0.0, 1.0);
+      float z = sqrt(max(0.0, 1.0 - k * k));
+      vec3 nrm = normalize(vec3(p / r, z + 1e-4));
+
+      // swirling internal light, rotating at this sphere's own speed
+      float ang = t * 0.32 * spin;
+      mat2 rot = mat2(cos(ang), -sin(ang), sin(ang), cos(ang));
+      vec2 sp = rot * (p / R);
+      vec2 flow = hover * 0.5 * vec2(sin(t * 3.1 + dm * 14.0), cos(t * 2.7 + dm * 11.0));
+      float f = fbm(sp * 1.5 + nrm.xy * 0.9 + vec2(seed, t * 0.12) + flow);
+      float g = fbm(sp * 2.3 - vec2(t * 0.09, seed) - flow * 0.6);
+
+      vec3 deepViolet = vec3(0.20, 0.03, 0.52);
+      vec3 electric   = vec3(0.56, 0.16, 1.00);
+      vec3 magenta    = vec3(0.96, 0.07, 0.62);
+      vec3 hotPink    = vec3(1.00, 0.36, 0.70);
+      vec3 red        = vec3(0.95, 0.04, 0.10);
+      vec3 shadow     = vec3(0.05, 0.00, 0.10);
+
+      vec3 col = mix(deepViolet, electric, smoothstep(0.25, 0.75, f));
+      col = mix(col, magenta, smoothstep(0.42, 0.78, g) * tint.x);
+      col = mix(col, red, smoothstep(0.30, 0.62, f * g * 1.7) * tint.y);
+      col = mix(col, hotPink, smoothstep(0.62, 0.92, g) * 0.55);
+      col = mix(col, mix(magenta, red, tint.y), 0.28 * tint.y);
+
+      // soft volumetric lighting: lit from the lower right, deep purple shadow upper left
+      vec3 L = normalize(vec3(0.5, 0.62, 0.62));
+      float diff = clamp(dot(nrm, L), 0.0, 1.0);
+      vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+      float nh = clamp(dot(nrm, H), 0.0, 1.0);
+      float fres = pow(1.0 - z, 2.4);
+      vec3 lit = mix(shadow, col, 0.08 + 1.05 * diff);
+      // soft glossy sheen (no hard white dot)
+      lit += hotPink * pow(nh, 18.0) * 0.32;
+      // glowing crescent along the lit edge, like light passing through liquid
+      vec3 rimCol = mix(mix(magenta, red, tint.y * 0.8), hotPink, 0.3 + 0.3 * sin(a * 3.0 + t * 0.6 * spin));
+      lit += rimCol * pow(fres, 1.3) * (0.35 + 1.35 * diff);
+      lit += electric * pow(fres, 3.0) * 0.45;
+      float occl = smoothstep(-0.65, 0.9, dot(p / max(len, 1e-4), normalize(vec2(0.62, 0.78))));
+      lit *= mix(0.16, 1.18, occl);
+
+      float body = 1.0 - smoothstep(-0.22 * R, 0.12 * R, d);
+      float glow = exp(-max(d + 0.05 * R, 0.0) / (R * 0.42)) * 0.55 * (0.75 + 0.25 * sin(t * 0.9 * spin + seed));
+      vec3 glowCol = mix(electric, magenta, 0.45 + 0.35 * sin(a * 2.0 - t * 0.5 * spin)) * 0.85;
+
+      vec3 rgb = lit * body + glowCol * glow * (1.0 - body);
+      float alpha = clamp(body + glow * (1.0 - body) * 0.85, 0.0, 1.0);
+      return vec4(rgb, alpha);
+    }
+
+    void main() {
+      // map the pixel into the old image's coordinate space ("contain", optionally enlarged)
+      vec2 px = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y);
+      float imgA = ${IMG_ASPECT.toFixed(5)};
+      float fit = min(uRes.x / imgA, uRes.y) * uScale;
+      vec2 off = (uRes - vec2(fit * imgA, fit)) * 0.5;
+      vec2 q = (px - off) / fit;
+
+      vec4 s1 = sphere(q, uC1, uR.y, uTime, 0.8, 7.3, uHover.y, vec2(0.75, 1.0));  // red / magenta
+      vec4 s0 = sphere(q, uC0, uR.x, uTime, 1.25, 2.1, uHover.x, vec2(1.0, 0.35)); // violet / hot pink
+      vec4 col = s0 + s1 * (1.0 - s0.a);
+      gl_FragColor = col;
+    }`
+
+  function compile(type, src) {
+    const sh = gl.createShader(type)
+    gl.shaderSource(sh, src)
+    gl.compileShader(sh)
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh))
+    return sh
+  }
+  const prog = gl.createProgram()
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert))
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag))
+  gl.linkProgram(prog)
+  gl.useProgram(prog)
+
+  const buf = gl.createBuffer()
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf)
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW)
+  const aPos = gl.getAttribLocation(prog, "aPos")
+  gl.enableVertexAttribArray(aPos)
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0)
+
+  const U = {}
+  for (const name of ["uRes", "uTime", "uScale", "uMouse", "uHover", "uC0", "uC1", "uR"]) U[name] = gl.getUniformLocation(prog, name)
+  gl.uniform2f(U.uR, SPHERES[0].r, SPHERES[1].r)
+
+  // size the drawing buffer to the canvas (capped pixel ratio for performance)
+  let scale = 1
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+    const w = Math.round(canvas.clientWidth * dpr)
+    const h = Math.round(canvas.clientHeight * dpr)
+    if (w && h && (canvas.width !== w || canvas.height !== h)) {
+      canvas.width = w
+      canvas.height = h
+    }
+    scale = window.matchMedia("(max-width: 600px)").matches ? 1.5 : 1
+  }
+  new ResizeObserver(resize).observe(canvas)
+
+  // pixel -> image space (same mapping as the shader)
+  function toImageSpace(clientX, clientY) {
+    const box = canvas.getBoundingClientRect()
+    const fit = Math.min(box.width / IMG_ASPECT, box.height) * scale
+    const offX = (box.width - fit * IMG_ASPECT) / 2
+    const offY = (box.height - fit) / 2
+    return [(clientX - box.left - offX) / fit, (clientY - box.top - offY) / fit]
+  }
+
+  // cursor (smoothed) and per-sphere hover strength (eases in/out)
+  const target = [-9, -9]
+  const mouse = [-9, -9]
+  const hover = [0, 0]
+  window.addEventListener("pointermove", (e) => {
+    const m = toImageSpace(e.clientX, e.clientY)
+    target[0] = m[0]
+    target[1] = m[1]
+  }, { passive: true })
+  document.addEventListener("pointerleave", () => { target[0] = target[1] = -9 })
+
+  function centre(i, t) {
+    const s = SPHERES[i]
+    return [s.c[0] + Math.sin(t * s.fx + s.ph) * s.ax, s.c[1] + Math.cos(t * s.fy + s.ph * 0.7) * s.ay]
+  }
+
+  // only animate while the hero is on screen and the tab is visible
+  let onScreen = true
+  new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting }).observe(canvas)
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const start = performance.now()
+  let last = start
+  let clock = 0
+  function frame(now) {
+    requestAnimationFrame(frame)
+    const dt = Math.min((now - last) / 1000, 0.05)
+    last = now
+    if (!onScreen || document.hidden || !canvas.clientWidth) return
+    if (!reduce) clock += dt
+
+    // ease the cursor and the hover strength so shapes stretch and relax smoothly
+    mouse[0] += (target[0] - mouse[0]) * 0.14
+    mouse[1] += (target[1] - mouse[1]) * 0.14
+    const c0 = centre(0, clock)
+    const c1 = centre(1, clock)
+    ;[c0, c1].forEach((c, i) => {
+      const dist = Math.hypot(target[0] - c[0], target[1] - c[1])
+      const want = dist < SPHERES[i].r * 1.9 ? 1 : 0
+      hover[i] += (want - hover[i]) * (want ? 0.08 : 0.04)
+    })
+
+    gl.viewport(0, 0, canvas.width, canvas.height)
+    gl.clearColor(0, 0, 0, 0)
+    gl.clear(gl.COLOR_BUFFER_BIT)
+    gl.uniform2f(U.uRes, canvas.width, canvas.height)
+    gl.uniform1f(U.uTime, clock)
+    gl.uniform1f(U.uScale, scale)
+    gl.uniform2f(U.uMouse, mouse[0], mouse[1])
+    gl.uniform2f(U.uHover, hover[0], hover[1])
+    gl.uniform2f(U.uC0, c0[0], c0[1])
+    gl.uniform2f(U.uC1, c1[0], c1[1])
+    gl.drawArrays(gl.TRIANGLES, 0, 6)
+  }
+  resize()
+  requestAnimationFrame(frame)
+})()
+
 // ---------- Init ----------
 renderProjects()
 renderServices()
