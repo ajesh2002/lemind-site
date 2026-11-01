@@ -5974,3 +5974,69 @@ footer.site-footer .footer-logo {
 .project-info p {
   font-size: 16px;
 }
+
+/* ================= PHONE HERO: exactly one screen ================= */
+@media (max-width: 600px) {
+  /* logo right at the top; the kebab floats over it */
+  :root {
+    --logo-top: 14px;
+  }
+
+  .hero,
+  .hero.hero-intro {
+    height: calc(100svh - 20px); /* leaves 20px of the image strip peeking in */
+    min-height: 0;
+    padding-top: calc(var(--logo-top) + 403 * var(--logo-unit) + 44px);
+    padding-bottom: 26px;
+    overflow: hidden;
+  }
+
+  .hero h1 {
+    order: 1;
+    align-self: stretch;
+    width: auto;
+    margin: 0 4vw;
+  }
+
+  /* rotating shape sits under the headline and shrinks to fit short screens */
+  .hero-orb {
+    order: 2;
+    position: relative;
+    top: auto;
+    left: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    margin: 6px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    translate: none;
+  }
+
+  .hero-orb img {
+    width: auto;
+    max-width: 88%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* the two notes pinned to the bottom of the screen */
+  .hero-notes {
+    order: 3;
+    flex: none;
+    margin: 0 4vw;
+    padding-top: 12px;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* the orb artwork has lots of empty margin: show it larger */
+  .hero-orb img {
+    max-width: 150%;
+    max-height: 150%;
+    width: 150%;
+  }
+}
