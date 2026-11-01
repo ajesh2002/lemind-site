@@ -722,6 +722,15 @@ siteMenu.addEventListener("click", (event) => {
   }, 420)
 })
 
+
+// About values: wrap each title line so it can slide up from behind a mask
+document.querySelectorAll(".value h3").forEach((title) => {
+  const lines = title.innerHTML.split(/<br\s*\/?>/i)
+  title.innerHTML = lines
+    .map((line, i) => `<span class="v-line"><span style="--li:${i}">${line.trim()}</span></span>`)
+    .join("")
+})
+
 // ---------- Init ----------
 renderProjects()
 renderServices()
