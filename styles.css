@@ -5916,3 +5916,17 @@ footer.site-footer .footer-logo {
 .approach article p {
   color: rgba(255, 255, 255, 0.62);
 }
+
+/* Work tags: 13px, dimmer */
+.project-info .tags {
+  gap: 8px 14px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+}
+
+.project-info .tags span + span::before {
+  width: 4px;
+  height: 4px;
+  margin: 0 14px 2px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
