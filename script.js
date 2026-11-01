@@ -163,6 +163,7 @@ const subPages = {
   "#work-page": document.getElementById("work-page"),
   "#case-simply": document.getElementById("case-simply"),
   "#case-akay": document.getElementById("case-akay"),
+  "#privacy": document.getElementById("privacy"),
 }
 
 const curtain = document.getElementById("page-curtain")
@@ -521,7 +522,7 @@ const AUTO_REVEAL_TARGETS = [
 // Areas that already have their own entrance or motion
 const AUTO_REVEAL_SKIP = [
   ".reveal", ".reveal-scale", ".reveal-fade", ".reveal-card",
-  ".hero-intro", ".thanks-hero", ".glance-track", ".photo-marquee", ".sprint-timeline", ".faq-a", ".sprint-visual", ".web3-visual", ".web3-ticker", ".crypto-bg", ".ai-bg", ".t-tools", ".work-hero-art", ".case-cover", ".case-next", ".split-words", ".services-header", ".site-header",
+  ".hero-intro", ".thanks-hero", ".glance-track", ".photo-marquee", ".sprint-timeline", ".faq-a", ".sprint-visual", ".web3-visual", ".web3-ticker", ".crypto-bg", ".ai-bg", ".t-tools", ".work-hero-art", ".case-cover", ".case-next", ".legal-toc", ".legal-section", ".split-words", ".services-header", ".site-header",
 ].join(", ")
 
 // Elements whose CSS transform must be kept: fade only
@@ -732,6 +733,11 @@ document.querySelectorAll(".value h3").forEach((title) => {
   title.innerHTML = lines
     .map((line, i) => `<span class="v-line"><span style="--li:${i}">${line.trim()}</span></span>`)
     .join("")
+})
+
+// Copyright year always shows the current year
+document.querySelectorAll(".js-year").forEach((node) => {
+  node.textContent = new Date().getFullYear()
 })
 
 // ---------- Init ----------
