@@ -5963,3 +5963,10 @@ footer.site-footer .footer-logo {
 .hero-notes p {
   color: rgba(255, 255, 255, 0.7);
 }
+
+/* project tagline: 14px, dimmer */
+.project-info p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+}
