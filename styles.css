@@ -6328,3 +6328,9 @@ html.intro-handover #menu-toggle {
 .write-sweep {
   transform: translateX(-230px);
 }
+
+/* intro logo: no cached bitmap while it grows */
+.intro-logo {
+  will-change: auto;
+  height: auto;
+}

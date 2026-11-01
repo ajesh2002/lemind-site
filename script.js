@@ -771,15 +771,18 @@ async function runIntro() {
 
   await Promise.all([Promise.race([document.fonts.ready, wait(1500)]), wait(1950)]) // writing time
 
-  // FLIP: measure where the real header logo sits and fly the intro logo there
+  // Fly the intro logo to the real header logo by animating its actual size and
+  // position (not a scale transform), so the vector logo is redrawn crisp every frame
   const logo = intro.querySelector(".intro-logo")
-  const from = logo.getBoundingClientRect()
   const to = document.querySelector(".header-mark img").getBoundingClientRect()
-  const scale = to.width / from.width
-  const dx = to.left + to.width / 2 - (from.left + from.width / 2)
-  const dy = to.top + to.height / 2 - (from.top + from.height / 2)
-  logo.style.transition = "transform 1100ms cubic-bezier(0.7, 0, 0.2, 1)"
-  logo.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`
+  logo.style.transition = [
+    "left 1100ms cubic-bezier(0.7, 0, 0.2, 1)",
+    "top 1100ms cubic-bezier(0.7, 0, 0.2, 1)",
+    "width 1100ms cubic-bezier(0.7, 0, 0.2, 1)",
+  ].join(", ")
+  logo.style.left = `${to.left + to.width / 2}px`
+  logo.style.top = `${to.top + to.height / 2}px`
+  logo.style.width = `${to.width}px`
   intro.classList.add("is-moving")
 
   await wait(1120)
