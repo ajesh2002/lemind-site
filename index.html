@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lemind — Experience Design Studio</title>
+    <link rel="icon" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Page transition curtain (also covers the first load) -->
+    <div id="page-curtain" class="page-curtain is-covering" aria-hidden="true">
+      <img src="assets/f90a9.svg" alt="" />
+    </div>
+
+    <!-- Kebab menu button + full-screen menu (shared by every page) -->
+    <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div id="site-menu" class="site-menu" aria-hidden="true" inert>
+      <a class="menu-brand" href="#top" aria-label="Lemind home"><img src="assets/f90a9.svg" alt="Lemind" /></a>
+
+      <div class="menu-inner">
+        <nav class="menu-links" aria-label="Main menu">
+          <a href="#work-page" data-page="#work-page"><span class="menu-word"><span data-text="Work">Work</span></span></a>
+          <a href="#services-page" data-page="#services-page"><span class="menu-word"><span data-text="Services">Services</span></span></a>
+          <a href="#about-page" data-page="#about-page"><span class="menu-word"><span data-text="About">About</span></span></a>
+        </nav>
+        <nav class="menu-sub" aria-label="More pages">
+          <a href="#ai-sprint" data-page="#ai-sprint">AI Sprint</a>
+          <a href="#web3" data-page="#web3">Web3</a>
+          <a href="#contact-page" data-page="#contact-page">Contact</a>
+        </nav>
+      </div>
+
+      <div class="menu-foot">
+        <p class="menu-hello">
+          Say hello—ready to create something unforgettable?<br />
+          <a href="mailto:hello@lemind.designs">hello@lemind.designs</a>
+          <span class="menu-dot">·</span>
+          <span>+91 989 562 6740</span>
+        </p>
+        <p class="menu-follow">
+          Follow our work on<br />
+          <a href="#contact">LinkedIn</a> and <a href="#contact">Dribbble</a>
+        </p>
+      </div>
+    </div>
+    <!-- ============ HOME / WORK PAGE ============ -->
+    <main id="home-page">
+      <header class="site-header">
+        <a href="#top" class="header-mark" aria-label="Lemind home">
+          <img src="assets/92391.svg" alt="Lemind" />
+        </a>
+      </header>
+      <div class="page-body">
+
+      <section class="hero hero-intro" id="top">
+        <div class="hero-orb" data-parallax="0.1">
+          <img src="assets/fd347.png" alt="" />
+        </div>
+        <p class="studio-label">
+          Experience <br />Design <br />Studio
+        </p>
+        <h1>
+          <strong>Ideas are chaotic.</strong> With a focused mind, we shape them
+          into meaningful digital products.
+        </h1>
+        <div class="hero-notes">
+          <p>Two Engagement<br />Models: Cash or Equity.</p>
+          <p>Strategy, Design,<br />and Performance.</p>
+        </div>
+      </section>
+
+      <section class="showcase-strip" aria-label="Selected interface designs">
+        <img
+          src="assets/19587.png"
+          alt="A collection of food and hospitality mobile interface designs"
+          data-parallax="0.08"
+          data-parallax-max="55"
+        />
+      </section>
+
+      <section class="manifesto">
+        <div class="manifesto-title">
+          <img src="assets/1ea9e.png" alt="" data-parallax="0.1" data-parallax-max="55" />
+          <h2>Focused.<br />Fluid.<br />Functional.</h2>
+        </div>
+        <div class="manifesto-copy">
+          <p>
+            We simplify the complex and elevate the ordinary. Our design
+            services are tailored to help brands connect and users stay.
+          </p>
+          <img src="assets/c54e2.png" alt="" data-parallax="0.12" data-parallax-max="60" />
+        </div>
+      </section>
+
+      <section class="services" id="services">
+        <div class="services-intro">
+          <p class="section-label">What We Do</p>
+          <div>
+            <p class="services-lead">
+              We combine strategy, design, and performance marketing to turn
+              founders' visions into impactful, unforgettable brands.
+            </p>
+            <a href="#services-page" class="text-link">Explore our services</a>
+          </div>
+          <ul>
+            <li>Research &amp; Innovation</li>
+            <li>Experience Design</li>
+            <li>Frontend Development</li>
+            <li>Full-Stack Development</li>
+            <li>Product Consultation</li>
+            <li>Branding &amp; identity</li>
+          </ul>
+        </div>
+
+        <div class="service-row">
+          <p class="service-kicker">AI Sprint Studio</p>
+          <div class="service-copy">
+            <h3>Build faster. Validate smarter.</h3>
+            <p>
+              Innovation doesn’t have to wait. We combine lean product thinking
+              with intelligent AI tools to turn bold ideas into testable
+              prototypes—within days, not months.
+            </p>
+            <a href="#ai-sprint">Explore AI Sprint Studio</a>
+          </div>
+          <img class="service-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" />
+        </div>
+
+        <div class="service-row">
+          <p class="service-kicker">Crypto &amp; Web 3</p>
+          <div class="service-copy">
+            <h3>Shaping Crypto into the Future Everyone Believes In</h3>
+            <p>
+              We help Web3 companies rise above the noise with bold branding,
+              visionary web design, and seamless user experiences that drive
+              transparency, trust and adoption.
+            </p>
+            <a href="#web3">Explore Blockchain Services</a>
+          </div>
+          <img class="service-art cubes" src="assets/f9da8.png" alt="" data-parallax="0.08" />
+        </div>
+      </section>
+
+      <section class="work" id="work">
+        <div class="project-grid" id="project-grid"></div>
+        <div class="work-more reveal"><a class="sprint-btn" href="#work-page">View all work <span aria-hidden="true">→</span></a></div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="about-copy">
+          <p class="section-label">About us</p>
+          <div>
+            <h2>
+              Lemind is a design studio where mindful thinking meets creativity,
+              culture, and innovation—to craft meaningful experiences.
+            </h2>
+            <a href="#about-page" class="text-link about-more">Know more about us</a>
+          </div>
+          <p>
+            At Lemind, we know ideas can be chaotic when they first strike the
+            mind. That’s why we bring clarity, structure, and purpose to the
+            creative process. Built on the belief that every great product
+            starts with a focused mind, our team transforms scattered thoughts
+            into smart, seamless digital experiences—handling everything from
+            strategy and design to development—so you can stay focused on the
+            bigger picture.
+          </p>
+        </div>
+
+        <!-- Photo strip: scrolls left continuously (second set is a copy for a seamless loop) -->
+        <div class="photo-marquee reveal" aria-label="Life at Lemind">
+          <div class="photo-track">
+            <div class="photo-set">
+              <img class="p-a" src="assets/46a1f.png" alt="Team arranging design materials on a table" />
+              <img class="p-b" src="assets/ff0a2.png" alt="Designer pinning notes to a board" />
+              <img class="p-c" src="assets/b7a5b.png" alt="Designer sketching at a desk" />
+              <img class="p-d" src="assets/1a696.png" alt="Sticky-note wireframes on a corkboard" />
+            </div>
+            <div class="photo-set" aria-hidden="true">
+              <img class="p-a" src="assets/46a1f.png" alt="" />
+              <img class="p-b" src="assets/ff0a2.png" alt="" />
+              <img class="p-c" src="assets/b7a5b.png" alt="" />
+              <img class="p-d" src="assets/1a696.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="approach">
+          <p class="section-label">Our Approach</p>
+          <article>
+            <h3>Designed with clarity.<br />Crafted with intention.</h3>
+            <p>
+              Every solution begins with focused thinking. We simplify the
+              complex to create experiences that feel effortless—and work
+              beautifully.
+            </p>
+          </article>
+          <article>
+            <h3>Thoughtfully simple.<br />Exceptionally effective.</h3>
+            <p>
+              We design with intention—eliminating friction, enhancing
+              usability, and driving real results.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      </div>
+
+      <footer id="contact" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ SERVICES PAGE ============ -->
+    <main id="services-page" class="services-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+      <div class="page-body">
+
+      <section class="services-hero">
+        <div class="services-hero-copy">
+          <h1 class="reveal">Our Services</h1>
+          <p class="reveal" style="--delay: 150ms">
+            Lemind is a design studio where mindful thinking meets creativity,
+            culture, and innovation—to craft meaningful experiences.
+          </p>
+        </div>
+        <img class="services-flower reveal-scale" style="--delay: 250ms" src="assets/0d3a1.png" alt="" data-parallax="0.1" />
+      </section>
+
+      <section class="services-list" id="services-list" aria-label="Services"></section>
+
+      <section class="services-studios">
+        <article class="studio-feature">
+          <p class="studio-kicker reveal">AI Sprint Studio</p>
+          <div class="studio-feature-copy reveal" style="--delay: 120ms">
+            <h2>Build faster. Validate smarter.</h2>
+            <p>
+              Innovation doesn’t have to wait. At Lemind’s AI Sprint Studio, we
+              combine lean product thinking with intelligent AI tools to turn
+              bold ideas into testable prototypes—within days, not months.
+              Whether you’re exploring a new feature, redesigning a legacy flow,
+              or validating an MVP, our AI-powered process accelerates
+              discovery, reduces risk, and delivers clarity fast.
+            </p>
+            <a href="#ai-sprint">Explore AI Sprint Studio</a>
+          </div>
+          <img class="studio-feature-art sprint-art sphere" src="assets/ai-sphere.webp" alt="" data-parallax="0.08" />
+        </article>
+
+        <article class="studio-feature">
+          <p class="studio-kicker reveal">Crypto &amp; Web 3</p>
+          <div class="studio-feature-copy reveal" style="--delay: 120ms">
+            <h2>Shaping Crypto into the Future Everyone Believes In</h2>
+            <p>
+              Blockchain is no longer just for early adopters. With institutions
+              and governments paying attention to crypto, the stakes are higher
+              than ever. At Lemind, we help Web3 companies rise above the noise
+              with bold branding, visionary web design, and seamless user
+              experiences that drive trust and adoption.
+            </p>
+            <a href="#web3">Explore Blockchain Services</a>
+          </div>
+          <img class="studio-feature-art crypto-art" src="assets/f9da8.png" alt="" data-parallax="0.08" />
+        </article>
+      </section>
+
+      </div>
+
+      <footer id="services-contact" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ ABOUT PAGE ============ -->
+    <main id="about-page" class="services-page about-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+      <div class="page-body">
+
+      <section class="about-hero">
+        <h1 class="split-words">We craft digital experiences that elevate brands.</h1>
+        <p class="reveal" style="--delay: 450ms">
+          We’re Lemind, a UI/UX design studio rooted in empathy, clarity, and
+          forward thinking design. Whether it’s a fresh startup or a scaling
+          product, we bring the finesse of design thinking to every pixel.
+        </p>
+      </section>
+
+      <section class="about-glance" aria-label="Lemind at a glance">
+        <p class="about-label reveal">Lemind at a Glance.</p>
+        <div class="glance-track">
+          <div class="glance-row">
+            <img class="g-tall" src="assets/b7a5b.png" alt="Creative team member" />
+            <img class="g-short" src="assets/46a1f.png" alt="Collaborative design materials" />
+            <img class="g-mid" src="assets/ff0a2.png" alt="Designer working at a desk" />
+            <img class="g-tall" src="assets/1a696.png" alt="Design workshop notes" />
+            <img class="g-short" src="assets/517c2.png" alt="Inflight entertainment project" />
+          </div>
+          <!-- duplicate row for a seamless loop -->
+          <div class="glance-row" aria-hidden="true">
+            <img class="g-tall" src="assets/b7a5b.png" alt="" />
+            <img class="g-short" src="assets/46a1f.png" alt="" />
+            <img class="g-mid" src="assets/ff0a2.png" alt="" />
+            <img class="g-tall" src="assets/1a696.png" alt="" />
+            <img class="g-short" src="assets/517c2.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="about-values">
+        <div class="values-intro">
+          <p class="about-label reveal">Our Values</p>
+          <p class="values-lead reveal" style="--delay: 120ms">
+            We combine strategy, design, and performance marketing to turn
+            founders’ visions into impactful, unforgettable brands.
+          </p>
+        </div>
+        <div class="values-list">
+          <article class="value reveal">
+            <h3>Challenge Core<br />Assumptions</h3>
+            <p>
+              At the heart of our journey lies this singular idea. We believe
+              that by bravely questioning our own and our clients’ assumptions
+              about their brand, website, and product, we can uncover new
+              solutions and ideas. While some might assume we could not run a
+              thriving digital agency from a Croatian island, we continue to
+              challenge this particular assumption every single day.
+            </p>
+          </article>
+          <article class="value reveal">
+            <h3>Learning<br />Through Doing</h3>
+            <p>
+              We approach every problem with an open mind, and sometimes finding
+              the best solutions means taking the road less traveled. Embracing
+              experimentation, venturing into the unknown, or even stumbling
+              occasionally is all part of the process. Because every step, even
+              the missteps, deepens our understanding and hones our craft.
+              Learning by doing—it’s how we grow.
+            </p>
+          </article>
+          <article class="value reveal">
+            <h3>Focus and<br />Determination</h3>
+            <p>
+              When we say yes to a project, it’s because we truly believe in it.
+              Our commitment means giving it our all, every time. If there’s a
+              way to improve, streamline or make something better, we’ll pursue
+              it, even if it means stepping out of our comfort zone. For us it’s
+              not about meeting expectations, it’s about our determination to
+              create something that truly resonates with people.
+            </p>
+          </article>
+          <article class="value reveal">
+            <h3>Listen Smart and<br />Fast</h3>
+            <p>
+              We take an open-door approach to communication, with both our
+              clients and each other. Every voice is important, and we’re never
+              too busy to listen. To us, listening smart goes beyond just
+              hearing words—it means understanding without barriers of ego,
+              being mindful to perspectives and insights, and always being open
+              to change and growth.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-team">
+        <div class="team-collage">
+          <img class="team-tall reveal-scale" src="assets/b7a5b.png" alt="Lemind team member" data-parallax="0.04" data-parallax-max="30" />
+          <img class="team-circle reveal-scale" style="--delay: 150ms" src="assets/ff0a2.png" alt="Designer at work" />
+          <img class="team-wide reveal-scale" style="--delay: 300ms" src="assets/46a1f.png" alt="Design materials on a table" data-parallax="0.07" data-parallax-max="40" />
+        </div>
+        <p class="team-copy reveal">
+          Our agency is a global network of creative minds, each embracing their
+          unique culture and infusing it into their work. From tranquil island
+          shores to the heart of urban landscapes, our team’s diverse
+          backgrounds come together to shape our holistic approach. Our remote
+          culture fosters openness, a willingness to learn, and a curious
+          nature.
+        </p>
+      </section>
+
+      <section class="about-cta">
+        <a class="big-email reveal" href="mailto:hello@lemind.com">hello@lemind.com</a>
+      </section>
+
+      </div>
+
+      <footer id="about-contact" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ AI SPRINT STUDIO PAGE ============ -->
+    <main id="ai-sprint" class="services-page sprint-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+      <div class="page-body">
+
+      <!-- Hero -->
+      <section class="sprint-hero">
+        <div class="sprint-hero-copy">
+          <p class="sprint-kicker reveal"><span class="pulse-dot"></span> AI Sprint Studio</p>
+          <h1 class="split-words">Build faster. Validate smarter.</h1>
+          <p class="sprint-intro reveal" style="--delay: 500ms">
+            Innovation doesn’t have to wait. We combine lean product thinking
+            with intelligent AI tools to turn bold ideas into testable
+            prototypes—within days, not months.
+          </p>
+          <div class="sprint-ctas reveal" style="--delay: 650ms">
+            <a class="sprint-btn primary" href="#contact-page">Book a sprint <span aria-hidden="true">→</span></a>
+            <a class="sprint-btn" href="#sprint-process">See how it works</a>
+          </div>
+        </div>
+        <div class="sprint-visual reveal-scale" style="--delay: 300ms" aria-hidden="true">
+          <div class="web3-ring"></div>
+          <div class="web3-ring r2"></div>
+          <span class="sphere-spin"><img class="ai-sphere" src="assets/ai-sphere.webp" alt="" /></span>
+          <span class="sprint-chip chip-1">Day 1 · Discover</span>
+          <span class="sprint-chip chip-2">AI concepts ×12</span>
+          <span class="sprint-chip chip-3">Prototype ready</span>
+          <span class="sprint-chip chip-4">5 users tested</span>
+        </div>
+      </section>
+
+      <!-- Numbers -->
+      <section class="sprint-stats" aria-label="AI Sprint in numbers">
+        <div class="stat reveal">
+          <strong><span class="count" data-to="5">0</span></strong>
+          <span>days from idea to tested prototype</span>
+        </div>
+        <div class="stat reveal" style="--delay: 100ms">
+          <strong><span class="count" data-to="3">0</span>×</strong>
+          <span>faster than a traditional discovery phase</span>
+        </div>
+        <div class="stat reveal" style="--delay: 200ms">
+          <strong><span class="count" data-to="40">0</span>+</strong>
+          <span>sprints delivered for startups and enterprises</span>
+        </div>
+        <div class="stat reveal" style="--delay: 300ms">
+          <strong><span class="count" data-to="90">0</span>%</strong>
+          <span>of sprint ideas reach a clear go / no-go decision</span>
+        </div>
+      </section>
+
+      <!-- Why -->
+      <section class="sprint-why ai-why">
+        <!-- Decorative AI background -->
+        <div class="ai-bg" aria-hidden="true">
+          <svg class="ai-net" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+            <g class="ai-links">
+              <path d="M120 140 L360 90 M120 140 L360 260 M120 300 L360 90 M120 300 L360 260 M120 300 L360 430 M120 460 L360 260 M120 460 L360 430" />
+              <path d="M360 90 L600 180 M360 260 L600 180 M360 260 L600 380 M360 430 L600 380 M360 90 L600 380" />
+              <path d="M840 120 L1080 220 M840 300 L1080 220 M840 300 L1080 420 M840 480 L1080 420 M840 120 L1080 420" />
+            </g>
+            <g class="ai-neurons">
+              <circle cx="120" cy="140" r="5" /><circle cx="120" cy="300" r="5" /><circle cx="120" cy="460" r="5" />
+              <circle cx="360" cy="90" r="6" /><circle cx="360" cy="260" r="6" /><circle cx="360" cy="430" r="6" />
+              <circle cx="600" cy="180" r="7" /><circle cx="600" cy="380" r="7" />
+              <circle cx="840" cy="120" r="5" /><circle cx="840" cy="300" r="5" /><circle cx="840" cy="480" r="5" />
+              <circle cx="1080" cy="220" r="6" /><circle cx="1080" cy="420" r="6" />
+            </g>
+          </svg>
+          <span class="cb-glow g1"></span>
+          <span class="cb-glow g2"></span>
+          <span class="ai-spark s1">✦</span>
+          <span class="ai-spark s2">✦</span>
+          <span class="ai-spark s3">✦</span>
+          <span class="ai-spark s4">✦</span>
+          <span class="ai-spark s5">✦</span>
+          <span class="ai-bubble b1"><i></i><i></i><i></i></span>
+          <span class="ai-bubble b2">/prompt</span>
+          <span class="ai-bubble b3">AI ✦</span>
+        </div>
+        <div class="sprint-section-head">
+          <p class="section-label">Why AI Sprint</p>
+          <h2>Less guessing. More learning. Real answers in a week.</h2>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <img src="assets/d3b2b.svg" alt="" />
+            <h3>Lean product thinking</h3>
+            <p>We frame the right problem first, map risky assumptions and focus the sprint on the questions that decide your product’s future.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/e9d80.svg" alt="" />
+            <h3>AI-accelerated design</h3>
+            <p>AI tools help us explore dozens of directions in hours—flows, copy, visuals and data—so your team picks from the best, not the first.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/4a08c.svg" alt="" />
+            <h3>Validated with real users</h3>
+            <p>Every sprint ends with a realistic prototype in front of real people, so decisions are backed by evidence, not opinions.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Process timeline -->
+      <section class="sprint-process" id="sprint-process">
+        <div class="sprint-section-head">
+          <p class="section-label">How it works</p>
+          <h2>Five focused days, one clear outcome.</h2>
+        </div>
+        <ol class="sprint-timeline">
+          <li class="t-step">
+            <span class="t-day">Day 01</span>
+            <div><h3>Discover &amp; frame</h3><p>Stakeholder interviews, goals and constraints. We agree on the one big question the sprint must answer.</p><ul class="t-tools" aria-label="AI tools used"><li>ChatGPT</li><li>Perplexity</li><li>Dovetail AI</li><li>Otter.ai</li></ul></div>
+          </li>
+          <li class="t-step">
+            <span class="t-day">Day 02</span>
+            <div><h3>Ideate with AI</h3><p>Rapid concept generation with AI, sketches and competitive insight. We shortlist the strongest directions together.</p><ul class="t-tools" aria-label="AI tools used"><li>Claude</li><li>Midjourney</li><li>FigJam AI</li><li>Miro AI</li></ul></div>
+          </li>
+          <li class="t-step">
+            <span class="t-day">Day 03</span>
+            <div><h3>Prototype</h3><p>A realistic, clickable prototype—real copy, real visuals, real flows—built fast with AI-assisted design and code.</p><ul class="t-tools" aria-label="AI tools used"><li>Figma AI</li><li>v0</li><li>Cursor</li><li>Framer AI</li></ul></div>
+          </li>
+          <li class="t-step">
+            <span class="t-day">Day 04</span>
+            <div><h3>Test with users</h3><p>Five one-to-one sessions with your target users. You watch live and see exactly where the idea shines or struggles.</p><ul class="t-tools" aria-label="AI tools used"><li>Maze AI</li><li>Lookback</li><li>Otter.ai</li></ul></div>
+          </li>
+          <li class="t-step">
+            <span class="t-day">Day 05</span>
+            <div><h3>Insights &amp; roadmap</h3><p>A clear go / pivot / stop recommendation, prioritised next steps and a roadmap your team can act on Monday.</p><ul class="t-tools" aria-label="AI tools used"><li>Notion AI</li><li>Dovetail AI</li><li>Claude</li></ul></div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Inside a sprint (images) -->
+      <section class="sprint-gallery">
+        <div class="sprint-section-head">
+          <p class="section-label">Inside a sprint</p>
+          <h2>Hands-on, collaborative and fast.</h2>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gal-large">
+            <img src="assets/46a1f.png" alt="Team mapping ideas with sticky notes" data-parallax="0.05" data-parallax-max="40" />
+            <figcaption>Mapping the problem space</figcaption>
+          </figure>
+          <figure class="gal-tall">
+            <img src="assets/b7a5b.png" alt="Designer sketching interface ideas" data-parallax="0.08" data-parallax-max="50" />
+            <figcaption>From sketch to screen</figcaption>
+          </figure>
+          <figure class="gal-small">
+            <img src="assets/ff0a2.png" alt="Pinning concepts to a board" data-parallax="0.04" data-parallax-max="30" />
+            <figcaption>Choosing the strongest concept</figcaption>
+          </figure>
+          <figure class="gal-small">
+            <img src="assets/1a696.png" alt="Wireframes on a corkboard" data-parallax="0.06" data-parallax-max="40" />
+            <figcaption>Wireframes, fast</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Deliverables -->
+      <section class="sprint-deliver">
+        <div class="sprint-section-head">
+          <p class="section-label">What you get</p>
+          <h2>Everything you need to make the next decision.</h2>
+        </div>
+        <ul class="deliver-grid">
+          <li><span>01</span>Clickable, high-fidelity prototype</li>
+          <li><span>02</span>User testing report with video highlights</li>
+          <li><span>03</span>AI-generated concept variations</li>
+          <li><span>04</span>Design direction &amp; mini style guide</li>
+          <li><span>05</span>Prioritised product roadmap</li>
+          <li><span>06</span>Pitch-ready visuals for investors</li>
+        </ul>
+        <div class="ideal-for">
+          <p class="sprint-small-label">Ideal for</p>
+          <div class="chips">
+            <span>New feature exploration</span>
+            <span>Legacy flow redesign</span>
+            <span>MVP validation</span>
+            <span>Investor demos</span>
+            <span>AI product ideas</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sprint-faq">
+        <div class="sprint-section-head">
+          <p class="section-label">FAQ</p>
+          <h2>Good questions.</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Who needs to be involved from our side?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>A decision-maker for the kick-off and the final review, plus one product owner available for a couple of hours each day. We handle the rest.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Can a sprint run remotely?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>Yes. Most of our sprints are fully remote, using shared boards, live prototype reviews and recorded user sessions.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">What happens after the sprint?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>You keep everything we make. Many teams continue with us into full design and development—with the prototype as a head start.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Do we need to have AI in our product?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>No. We use AI to speed up our process. Your product can be anything—though if you are exploring AI features, we can prototype those too.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final call to action -->
+      <section class="sprint-cta">
+        <img class="sprint-cta-art" src="assets/0d3a1.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" />
+        <h2>Have a bold idea?<br /><em>Let’s sprint.</em></h2>
+        <a class="sprint-btn primary big" href="#contact-page">Start your AI Sprint <span aria-hidden="true">→</span></a>
+      </section>
+
+      </div>
+
+      <footer id="sprint-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ CRYPTO & WEB3 PAGE ============ -->
+    <main id="web3" class="services-page sprint-page web3-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+      <div class="page-body">
+
+      <!-- Hero -->
+      <section class="sprint-hero web3-hero">
+        <div class="sprint-hero-copy">
+          <p class="sprint-kicker reveal"><span class="pulse-dot purple"></span> Crypto &amp; Web 3</p>
+          <h1 class="split-words">Shaping Crypto into the Future Everyone Believes In</h1>
+          <p class="sprint-intro reveal" style="--delay: 600ms">
+            Blockchain is no longer just for early adopters. We help Web3
+            companies rise above the noise with bold branding, visionary web
+            design and seamless user experiences that drive transparency,
+            trust and adoption.
+          </p>
+          <div class="sprint-ctas reveal" style="--delay: 750ms">
+            <a class="sprint-btn primary" href="#contact-page">Start your Web3 project <span aria-hidden="true">→</span></a>
+            <a class="sprint-btn" href="#web3-services">Explore services</a>
+          </div>
+        </div>
+        <div class="web3-visual reveal-scale" style="--delay: 300ms" aria-hidden="true">
+          <div class="web3-ring"></div>
+          <div class="web3-ring r2"></div>
+          <img class="web3-cubes" src="assets/f9da8.png" alt="" />
+          <span class="sprint-chip w-chip-1">DeFi</span>
+          <span class="sprint-chip w-chip-2">NFTs</span>
+          <span class="sprint-chip w-chip-3">DAOs</span>
+          <span class="sprint-chip w-chip-4">Wallets</span>
+        </div>
+      </section>
+
+      <!-- Scrolling terms -->
+      <div class="web3-ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>DeFi</span><span>Tokenization</span><span>NFT Marketplaces</span><span>DAOs</span><span>Layer 2</span><span>Wallets</span><span>Real-World Assets</span><span>Exchanges</span><span>GameFi</span><span>Staking</span>
+          <span>DeFi</span><span>Tokenization</span><span>NFT Marketplaces</span><span>DAOs</span><span>Layer 2</span><span>Wallets</span><span>Real-World Assets</span><span>Exchanges</span><span>GameFi</span><span>Staking</span>
+        </div>
+      </div>
+
+      <!-- Numbers -->
+      <section class="sprint-stats" aria-label="Web3 work in numbers">
+        <div class="stat reveal">
+          <strong><span class="count" data-to="25">0</span>+</strong>
+          <span>Web3 brands, platforms and dApps designed</span>
+        </div>
+        <div class="stat reveal" style="--delay: 100ms">
+          <strong><span class="count" data-to="12">0</span></strong>
+          <span>token, NFT and product launches supported</span>
+        </div>
+        <div class="stat reveal" style="--delay: 200ms">
+          <strong><span class="count" data-to="60">0</span>%</strong>
+          <span>average drop in onboarding steps after redesign</span>
+        </div>
+        <div class="stat reveal" style="--delay: 300ms">
+          <strong><span class="count" data-to="8">0</span></strong>
+          <span>chains and ecosystems we’ve designed for</span>
+        </div>
+      </section>
+
+      <!-- The trust gap -->
+      <section class="web3-gap">
+        <div class="sprint-section-head">
+          <p class="section-label">The challenge</p>
+          <h2>The technology is ready. Trust and usability are what hold adoption back.</h2>
+        </div>
+        <div class="gap-list">
+          <article class="gap-item">
+            <span class="gap-num">01</span>
+            <h3>Too complex</h3>
+            <p>Seed phrases, gas fees and jargon scare away the next wave of users before they ever make a transaction.</p>
+          </article>
+          <article class="gap-item">
+            <span class="gap-num">02</span>
+            <h3>Hard to trust</h3>
+            <p>With scams in the headlines, products that look rushed or unclear lose credibility in seconds.</p>
+          </article>
+          <article class="gap-item">
+            <span class="gap-num">03</span>
+            <h3>Lost in the noise</h3>
+            <p>Thousands of projects launch every month. Without a distinct brand, even great technology goes unnoticed.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="sprint-why web3-services" id="web3-services">
+        <!-- Decorative crypto background -->
+        <div class="crypto-bg" aria-hidden="true">
+          <svg class="cb-network" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+            <g class="cb-lines">
+              <path d="M80 120 L300 60 L520 180 L760 90 L980 200 L1140 110" />
+              <path d="M140 420 L360 330 L520 180 M360 330 L620 470 L860 380 L980 200 M860 380 L1100 500" />
+            </g>
+            <g class="cb-nodes">
+              <circle cx="80" cy="120" r="4" /><circle cx="300" cy="60" r="5" /><circle cx="520" cy="180" r="6" />
+              <circle cx="760" cy="90" r="4" /><circle cx="980" cy="200" r="6" /><circle cx="1140" cy="110" r="4" />
+              <circle cx="140" cy="420" r="4" /><circle cx="360" cy="330" r="5" /><circle cx="620" cy="470" r="5" />
+              <circle cx="860" cy="380" r="5" /><circle cx="1100" cy="500" r="4" />
+            </g>
+          </svg>
+          <span class="cb-glow g1"></span>
+          <span class="cb-glow g2"></span>
+          <svg class="cb-hex h1" viewBox="0 0 100 115"><polygon points="50,2 98,29 98,86 50,113 2,86 2,29" /></svg>
+          <svg class="cb-hex h2" viewBox="0 0 100 115"><polygon points="50,2 98,29 98,86 50,113 2,86 2,29" /></svg>
+          <svg class="cb-hex h3" viewBox="0 0 100 115"><polygon points="50,2 98,29 98,86 50,113 2,86 2,29" /></svg>
+          <span class="cb-coin c1">₿</span>
+          <span class="cb-coin c2">Ξ</span>
+          <span class="cb-coin c3">◎</span>
+          <span class="cb-coin c4">⟠</span>
+        </div>
+        <div class="sprint-section-head">
+          <p class="section-label">What we do</p>
+          <h2>End-to-end design for crypto products people actually use.</h2>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <img src="assets/8bd32.svg" alt="" />
+            <h3>Web3 brand identity</h3>
+            <p>Names, logos, visual systems and tone of voice that make your protocol feel credible, distinct and built to last.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/4a08c.svg" alt="" />
+            <h3>Website &amp; landing pages</h3>
+            <p>Visionary marketing sites that explain complex technology simply and turn curious visitors into believers.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/e9d80.svg" alt="" />
+            <h3>dApp UX/UI design</h3>
+            <p>Clean, intuitive interfaces for exchanges, DeFi protocols, staking and marketplaces—on desktop and mobile.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/d3b2b.svg" alt="" />
+            <h3>Wallet &amp; onboarding</h3>
+            <p>Friction-free sign-up, wallet connection and first transactions designed for people who are new to crypto.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/71910.svg" alt="" />
+            <h3>Token &amp; NFT launches</h3>
+            <p>Launch pages, mint experiences, tokenomics visuals and pitch decks that build momentum from day one.</p>
+          </article>
+          <article class="why-card">
+            <img src="assets/147be.svg" alt="" />
+            <h3>Dashboards &amp; data</h3>
+            <p>Portfolio views, analytics and on-chain data turned into clear, real-time visuals people can act on.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Approach -->
+      <section class="web3-approach">
+        <div class="sprint-section-head">
+          <p class="section-label">Our approach</p>
+          <h2>Trust by design—in four steps.</h2>
+        </div>
+        <ol class="approach-steps">
+          <li class="a-step">
+            <span class="a-dot"></span>
+            <span class="a-num">01</span>
+            <h3>Clarity first</h3>
+            <p>We translate complex mechanics into plain language and simple flows anyone can follow.</p>
+          </li>
+          <li class="a-step">
+            <span class="a-dot"></span>
+            <span class="a-num">02</span>
+            <h3>Visible security</h3>
+            <p>Transaction previews, confirmations and status cues that show users exactly what will happen.</p>
+          </li>
+          <li class="a-step">
+            <span class="a-dot"></span>
+            <span class="a-num">03</span>
+            <h3>Familiar patterns</h3>
+            <p>Interfaces that feel as easy as the fintech apps people already use every day.</p>
+          </li>
+          <li class="a-step">
+            <span class="a-dot"></span>
+            <span class="a-num">04</span>
+            <h3>Community ready</h3>
+            <p>Brand systems and assets your community can rally around and share.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Featured case -->
+      <section class="web3-case">
+        <div class="case-media">
+          <img src="assets/674e3.png" alt="Simply Tokenized project presentation" data-parallax="0.07" data-parallax-max="60" />
+          <span class="case-tag">Featured project</span>
+        </div>
+        <div class="case-copy">
+          <p class="section-label">Case study</p>
+          <h2>Simply Tokenized</h2>
+          <p class="case-lead">Revolutionizing corporate finance with tokenization.</p>
+          <p>
+            We designed a web app and design system that makes tokenizing
+            real-world assets feel as familiar as online banking—clear
+            dashboards, guided issuance flows and investor-grade visuals.
+          </p>
+          <div class="tags case-tags"><span>UI UX</span><span>Web App</span><span>Design System</span></div>
+          <ul class="case-results">
+            <li><strong>3 weeks</strong><span>from concept to investor demo</span></li>
+            <li><strong>40+</strong><span>screens in a reusable design system</span></li>
+          </ul>
+          <a class="sprint-btn" href="#work">See more work <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <!-- Who it's for -->
+      <section class="sprint-deliver web3-who">
+        <div class="sprint-section-head">
+          <p class="section-label">Who we work with</p>
+          <h2>From first whitepaper to global platform.</h2>
+        </div>
+        <ul class="deliver-grid">
+          <li><span>01</span>Early-stage startups preparing to launch</li>
+          <li><span>02</span>DeFi protocols improving retention</li>
+          <li><span>03</span>Exchanges and wallets scaling to new markets</li>
+          <li><span>04</span>Enterprises exploring tokenization</li>
+          <li><span>05</span>NFT and gaming studios building community</li>
+          <li><span>06</span>Foundations growing their ecosystems</li>
+        </ul>
+        <div class="ideal-for">
+          <p class="sprint-small-label">Ecosystems</p>
+          <div class="chips">
+            <span>Ethereum</span><span>Solana</span><span>Polygon</span><span>Arbitrum</span><span>Base</span><span>BNB Chain</span><span>Avalanche</span><span>TON</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sprint-faq">
+        <div class="sprint-section-head">
+          <p class="section-label">FAQ</p>
+          <h2>Questions we often hear.</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Do you also build smart contracts?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>We focus on brand, design and frontend development, and work closely with your blockchain engineers—or trusted partners—for smart contracts and audits.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Can you work with our existing brand?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>Absolutely. We can refresh and extend an existing identity, or create a complete new brand system if you are repositioning.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">How long does a typical project take?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>A launch website takes around 4–6 weeks; a full dApp design usually 8–12 weeks. Need to move faster? Start with a 5-day AI Sprint.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">Do you accept payment in crypto?<span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a"><div><p>Talk to us—we offer two engagement models, cash or equity, and can discuss options that suit your project.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final call to action -->
+      <section class="sprint-cta web3-cta">
+        <img class="sprint-cta-art" src="assets/f9da8.png" alt="" aria-hidden="true" data-parallax="0.08" data-parallax-max="60" />
+        <h2>Building the future of finance?<br /><em>Let’s make it believable.</em></h2>
+        <a class="sprint-btn primary big" href="#contact-page">Talk to our Web3 team <span aria-hidden="true">→</span></a>
+      </section>
+
+      </div>
+
+      <footer id="web3-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ WORK PAGE ============ -->
+    <main id="work-page" class="services-page work-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+
+      <div class="page-body">
+      <section class="work-hero">
+        <div class="work-hero-copy">
+          <h1>Our Work</h1>
+          <p>
+            A selection of products, brands and experiences we’ve shaped—from
+            tokenized finance to airline crews and wellness retreats.
+          </p>
+        </div>
+        <div class="work-hero-art" aria-hidden="true">
+          <span class="wh-glow"></span>
+          <span class="wh-ring"></span>
+          <img class="wh-card wh-c1" src="assets/work-akay.webp" alt="" />
+          <img class="wh-card wh-c2" src="assets/work-simply.webp" alt="" />
+          <img class="wh-card wh-c3" src="assets/work-grocery.webp" alt="" />
+          <span class="wh-spark s1">✦</span>
+          <span class="wh-spark s2">✦</span>
+        </div>
+      </section>
+
+      <section class="work-list">
+        <div class="project-grid" id="work-page-grid"></div>
+      </section>
+
+      <section class="sprint-cta work-cta">
+        <h2>Your project<br /><em>could be next.</em></h2>
+        <a class="sprint-btn primary big" href="#contact-page">Start a project <span aria-hidden="true">→</span></a>
+      </section>
+      </div>
+
+      <footer id="work-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ CASE STUDY: SIMPLY TOKENIZED ============ -->
+    <main id="case-simply" class="services-page case-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+
+      <div class="page-body">
+      <section class="case-hero">
+        <a class="case-back reveal" href="#work-page">← All work</a>
+        <p class="case-kicker reveal">Fintech · Web App</p>
+        <h1 class="split-words">Simply Tokenized</h1>
+        <p class="case-tagline reveal" style="--delay: 350ms">Revolutionizing corporate finance with tokenization.</p>
+        <dl class="case-meta">
+          <div><dt>Client</dt><dd>Simply Tokenized</dd></div>
+          <div><dt>Industry</dt><dd>Fintech & Blockchain</dd></div>
+          <div><dt>Services</dt><dd>UX Strategy, UI Design, Design System</dd></div>
+          <div><dt>Platform</dt><dd>Web App</dd></div>
+          <div><dt>Year</dt><dd>2024</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-cover" style="background-color: #00b5cb">
+        <img src="assets/work-simply.webp" alt="Simply Tokenized project presentation" data-parallax="0.06" data-parallax-max="50" />
+      </section>
+
+      <section class="case-block">
+        <p class="section-label">Overview</p>
+        <p class="case-lead">Simply Tokenized helps companies issue and manage digital tokens for real-world assets. They came to us with powerful technology but an interface only blockchain experts could use. Our job: make tokenization feel as familiar as online banking.</p>
+      </section>
+
+      <section class="case-split">
+        <article>
+          <p class="case-small-label">The challenge</p>
+          <p>Issuing a token involved dozens of technical steps, jargon-heavy screens and no clear sense of progress. Investors and finance teams struggled to trust what they couldn’t understand.</p>
+        </article>
+        <article>
+          <p class="case-small-label">Our solution</p>
+          <p>We mapped every role in the platform, simplified issuance into a guided step-by-step flow and built a clean design system around clear data, status cues and plain language.</p>
+        </article>
+      </section>
+
+      <section class="sprint-stats case-stats" aria-label="Results">
+          <div class="stat reveal" style="--delay: 0ms">
+            <strong><span class="count" data-to="60">0</span>%</strong>
+            <span>fewer steps to launch an offering</span>
+          </div>
+          <div class="stat reveal" style="--delay: 100ms">
+            <strong><span class="count" data-to="3">0</span>×</strong>
+            <span>faster onboarding for finance teams</span>
+          </div>
+          <div class="stat reveal" style="--delay: 200ms">
+            <strong><span class="count" data-to="40">0</span>+</strong>
+            <span>reusable components in the design system</span>
+          </div>
+      </section>
+
+      <section class="case-gallery">
+        <figure class="cg-wide" style="background-color: #00b5cb"><img src="assets/674e3.png" alt="Simply Tokenized detail" data-parallax="0.05" data-parallax-max="40" /></figure>
+        <figure class="cg-half" style="background-color: #00b5cb"><img src="assets/work-simply.webp" alt="Simply Tokenized screens" data-parallax="0.07" data-parallax-max="40" /></figure>
+        <figure class="cg-half cg-text">
+          <p class="case-small-label">Design approach</p>
+          <p>Every decision started with the people using the product—clear hierarchy, calm colour and content that explains itself.</p>
+        </figure>
+      </section>
+
+      <section class="sprint-deliver case-deliver">
+        <div class="sprint-section-head">
+          <p class="section-label">What we did</p>
+          <h2>From first workshop to final handoff.</h2>
+        </div>
+        <ul class="deliver-grid"><li><span>01</span>User research & role mapping</li><li><span>02</span>Information architecture</li><li><span>03</span>Guided issuance flow</li><li><span>04</span>Investor & admin dashboards</li><li><span>05</span>Design system & UI kit</li><li><span>06</span>Interactive prototype</li></ul>
+      </section>
+
+      <section class="case-quote">
+        <blockquote>
+          <p>“Lemind turned a complex blockchain product into something our clients actually enjoy using. The new platform has completely changed how we demo and sell.”</p>
+          <cite class="case-who">— Product Lead, Simply Tokenized</cite>
+        </blockquote>
+      </section>
+
+      <a class="case-next" href="#case-akay">
+        <span class="case-next-label">Next project</span>
+        <span class="case-next-title">Akay <span aria-hidden="true">→</span></span>
+        <img src="assets/work-akay.webp" alt="" />
+      </a>
+      </div>
+
+      <footer id="case-simply-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ CASE STUDY: AKAY ============ -->
+    <main id="case-akay" class="services-page case-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+
+      <div class="page-body">
+      <section class="case-hero">
+        <a class="case-back reveal" href="#work-page">← All work</a>
+        <p class="case-kicker reveal">Agritech · Web Design</p>
+        <h1 class="split-words">Akay</h1>
+        <p class="case-tagline reveal" style="--delay: 350ms">Taste nature through technology.</p>
+        <dl class="case-meta">
+          <div><dt>Client</dt><dd>Akay</dd></div>
+          <div><dt>Industry</dt><dd>Agriculture & Food</dd></div>
+          <div><dt>Services</dt><dd>Brand Website, UI Design, Content Strategy</dd></div>
+          <div><dt>Platform</dt><dd>Website</dd></div>
+          <div><dt>Year</dt><dd>2024</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-cover" style="background-color: #c9d0d8">
+        <img src="assets/work-akay.webp" alt="Akay project presentation" data-parallax="0.06" data-parallax-max="50" />
+      </section>
+
+      <section class="case-block">
+        <p class="section-label">Overview</p>
+        <p class="case-lead">Akay connects conscious consumers with small farming communities, bringing fresh, traceable produce from field to table. They needed a digital home that tells the story of their growers as beautifully as it sells their products.</p>
+      </section>
+
+      <section class="case-split">
+        <article>
+          <p class="case-small-label">The challenge</p>
+          <p>Akay’s story was powerful but hidden behind a generic template site. Visitors couldn’t see where their food came from, and the shopping experience felt disconnected from the brand’s purpose.</p>
+        </article>
+        <article>
+          <p class="case-small-label">Our solution</p>
+          <p>We built an immersive, story-led website with farmer portraits, origin maps and seasonal collections—paired with a simple, mobile-first shopping flow that keeps the human story front and centre.</p>
+        </article>
+      </section>
+
+      <section class="sprint-stats case-stats" aria-label="Results">
+          <div class="stat reveal" style="--delay: 0ms">
+            <strong><span class="count" data-to="2">0</span>×</strong>
+            <span>longer time on site</span>
+          </div>
+          <div class="stat reveal" style="--delay: 100ms">
+            <strong><span class="count" data-to="45">0</span>%</strong>
+            <span>increase in online orders</span>
+          </div>
+          <div class="stat reveal" style="--delay: 200ms">
+            <strong><span class="count" data-to="12">0</span></strong>
+            <span>farming communities featured</span>
+          </div>
+      </section>
+
+      <section class="case-gallery">
+        <figure class="cg-wide" style="background-color: #c9d0d8"><img src="assets/87248.png" alt="Akay detail" data-parallax="0.05" data-parallax-max="40" /></figure>
+        <figure class="cg-half" style="background-color: #c9d0d8"><img src="assets/work-akay.webp" alt="Akay screens" data-parallax="0.07" data-parallax-max="40" /></figure>
+        <figure class="cg-half cg-text">
+          <p class="case-small-label">Design approach</p>
+          <p>Every decision started with the people using the product—clear hierarchy, calm colour and content that explains itself.</p>
+        </figure>
+      </section>
+
+      <section class="sprint-deliver case-deliver">
+        <div class="sprint-section-head">
+          <p class="section-label">What we did</p>
+          <h2>From first workshop to final handoff.</h2>
+        </div>
+        <ul class="deliver-grid"><li><span>01</span>Brand storytelling & content strategy</li><li><span>02</span>Website UX & UI design</li><li><span>03</span>Farmer profile system</li><li><span>04</span>Seasonal collection pages</li><li><span>05</span>Mobile-first shopping flow</li><li><span>06</span>Photography art direction</li></ul>
+      </section>
+
+      <section class="case-quote">
+        <blockquote>
+          <p>“Our growers finally feel seen. The new site captures exactly why Akay exists, and our customers tell us they love knowing who grew their food.”</p>
+          <cite class="case-who">— Founder, Akay</cite>
+        </blockquote>
+      </section>
+
+      <a class="case-next" href="#case-simply">
+        <span class="case-next-label">Next project</span>
+        <span class="case-next-title">Simply Tokenized <span aria-hidden="true">→</span></span>
+        <img src="assets/work-simply.webp" alt="" />
+      </a>
+      </div>
+
+      <footer id="case-akay-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ CONTACT PAGE ============ -->
+    <main id="contact-page" class="services-page contact-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+      <div class="page-body">
+
+      <section class="contact-hero">
+        <h1 class="split-words">Let’s Talk</h1>
+        <p class="reveal" style="--delay: 300ms">Let's create something<br />unforgettable</p>
+        <div class="contact-glow" aria-hidden="true"></div>
+      </section>
+
+      <section class="contact-body">
+        <div class="contact-form-wrap">
+          <p class="contact-label reveal">Let’s talk</p>
+          <form id="contact-form" class="contact-form" novalidate>
+            <!-- Spam trap: real people never fill this in -->
+            <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="field reveal" style="--delay: 60ms">
+              <input id="f-first" name="First name" type="text" placeholder=" " autocomplete="given-name" required />
+              <label for="f-first">First name</label>
+              <span class="field-error">Please enter your first name</span>
+            </div>
+            <div class="field reveal" style="--delay: 120ms">
+              <input id="f-last" name="Last name" type="text" placeholder=" " autocomplete="family-name" />
+              <label for="f-last">Last Name</label>
+            </div>
+            <div class="field reveal" style="--delay: 180ms">
+              <input id="f-country" name="Country" type="text" placeholder=" " autocomplete="country-name" />
+              <label for="f-country">Country</label>
+            </div>
+            <div class="field reveal" style="--delay: 240ms">
+              <input id="f-phone" name="Phone" type="tel" placeholder=" " autocomplete="tel" pattern="[0-9+()\-\s]{6,}" />
+              <label for="f-phone">Phone</label>
+              <span class="field-error">Please enter a valid phone number</span>
+            </div>
+            <div class="field reveal" style="--delay: 300ms">
+              <input id="f-email" name="email" type="email" placeholder=" " autocomplete="email" required />
+              <label for="f-email">Email</label>
+              <span class="field-error">Please enter a valid email address</span>
+            </div>
+            <div class="field reveal" style="--delay: 360ms">
+              <input id="f-company" name="Company" type="text" placeholder=" " autocomplete="organization" />
+              <label for="f-company">Company name</label>
+            </div>
+            <div class="field field-full reveal" style="--delay: 420ms">
+              <textarea id="f-message" name="Message" rows="4" placeholder=" " required></textarea>
+              <label for="f-message">Your Idea/message</label>
+              <span class="field-error">Tell us a little about your idea</span>
+            </div>
+
+            <div class="form-actions reveal" style="--delay: 480ms">
+              <button type="submit" class="submit-btn">
+                <span class="submit-text">Send message</span>
+                <span class="submit-arrow" aria-hidden="true">→</span>
+                <span class="submit-spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-status" id="form-status" role="alert"></p>
+            </div>
+          </form>
+        </div>
+
+        <aside class="contact-info reveal" style="--delay: 200ms">
+          <p class="contact-label">Get in touch</p>
+          <a href="mailto:hello@lemind.designs">hello@lemind.designs</a>
+          <span>+91 989 562 6740</span>
+        </aside>
+      </section>
+
+      </div>
+
+      <footer id="contact-footer" class="site-footer">
+        <div class="footer-row">
+          <div class="footer-inner">
+            <h2 class="footer-title"><strong>Let’s talk.</strong> We’d love<br />to hear from you. <a class="footer-cta" href="#contact-page">Contact Us</a></h2>
+          </div>
+          <div class="footer-side">
+            <div class="footer-contacts">
+              <div>
+                <span>Business Enquiries</span>
+                <a href="mailto:hey@lemind.design">hey@lemind.design</a>
+              </div>
+              <div>
+                <span>Join us</span>
+                <a href="mailto:join@lemind.design">join@lemind.design</a>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <span>© 2025 Lemind</span>
+              <span>Privacy &amp; Terms</span>
+            </div>
+          </div>
+        </div>
+        <img src="assets/18c40.svg" alt="Lemind" class="footer-logo" />
+      </footer>
+    </main>
+
+    <!-- ============ THANK YOU PAGE ============ -->
+    <main id="thank-you" class="services-page thanks-page" hidden>
+      <header class="services-header">
+        <a href="#top" aria-label="Lemind home">
+          <img src="assets/f90a9.svg" alt="Lemind" />
+        </a>
+        <div class="header-actions">
+          <a class="talk-link" href="#contact-page">Let’s Talk</a>
+        </div>
+      </header>
+
+      <section class="thanks-hero">
+        <div class="thanks-orbit" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <svg class="thanks-check" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="check-ring" cx="60" cy="60" r="54" />
+          <path class="check-mark" d="M38 62 L54 77 L84 45" />
+        </svg>
+        <h1 class="thanks-title"><span id="thanks-name">Thank you</span></h1>
+        <p class="thanks-text">
+          Your message is on its way to our studio. We read every idea and
+          will get back to you within 1–2 business days.
+        </p>
+        <p class="thanks-note" id="thanks-note"></p>
+        <div class="thanks-actions">
+          <a class="thanks-btn primary" href="#work">Explore our work</a>
+          <a class="thanks-btn" href="#top">Back to home</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
