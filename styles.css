@@ -6102,3 +6102,57 @@ footer.site-footer .footer-logo {
   .write-sweep { transform: none !important; animation: none !important; }
   .write-pen { display: none; }
 }
+
+/* ===== About · Our Values: sticky intro + larger value text ===== */
+.about-values {
+  display: grid;
+  grid-template-columns: 59% 1fr;
+  align-items: start;
+}
+
+/* left title stays in view until its bottom meets the end of the values list */
+.values-intro {
+  position: sticky;
+  top: 150px;
+  align-self: start;
+  padding-right: 40px;
+}
+
+.values-list {
+  width: min(380px, 100%);
+  margin: 300px 0 0;
+}
+
+.value h3 {
+  font-size: 28px; /* was 24px */
+}
+
+.value p {
+  font-size: 16px; /* was 14px */
+}
+
+@media (max-width: 900px) {
+  .about-values {
+    display: block;
+  }
+
+  .values-intro {
+    position: static;
+    padding-right: 0;
+  }
+
+  .values-list {
+    width: min(440px, 100%);
+    margin: 70px 0 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .values-list {
+    margin-left: 0;
+  }
+
+  .value h3 {
+    font-size: 24px;
+  }
+}
