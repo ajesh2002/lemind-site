@@ -753,8 +753,8 @@ document.querySelectorAll(".js-year").forEach((node) => {
   const IMG_ASPECT = 2000 / 1455 // footprint of the old image, so positions match
   // centres/radii in "image space" (x: 0..IMG_ASPECT, y: 0..1, y downward)
   const SPHERES = [
-    { c: [0.423 * IMG_ASPECT, 0.652], r: 0.168, fx: 0.43, fy: 0.31, ax: 0.016, ay: 0.022, ph: 0.0 }, // violet / hot pink
-    { c: [0.585 * IMG_ASPECT, 0.344], r: 0.16, fx: 0.29, fy: 0.47, ax: 0.020, ay: 0.016, ph: 2.1 }, // red / magenta
+    { c: [0.44 * IMG_ASPECT, 0.69], r: 0.198, fx: 0.43, fy: 0.31, ax: 0.016, ay: 0.022, ph: 0.0 }, // violet / hot pink
+    { c: [0.555 * IMG_ASPECT, 0.31], r: 0.198, fx: 0.29, fy: 0.47, ax: 0.020, ay: 0.016, ph: 2.1 }, // red / magenta
   ]
 
   const gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false })
@@ -787,80 +787,67 @@ document.querySelectorAll(".js-year").forEach((node) => {
       return v;
     }
 
-    vec4 sphere(vec2 q, vec2 c, float R, float t, float spin, float seed, float hover, vec2 tint) {
+    // One glowing sphere, matched to the reference: a smooth, slightly oval body,
+    // light pooled toward one side, a thin bright rim on that side and a very soft,
+    // blurred edge on the opposite side fading into darkness.
+    //   baseAng: direction the light comes from (radians, image space, y down)
+    //   hot/mid/rim/haze: this sphere's colours
+    vec4 sphere(vec2 q, vec2 c, float R, float t, float spin, float seed, float hover,
+                float baseAng, vec2 squash, vec3 hot, vec3 mid, vec3 rimCol, vec3 haze) {
       vec2 p = q - c;
 
       // magnetic stretch toward the cursor
       vec2 toM = uMouse - c;
       float lm = length(toM);
       vec2 dirM = toM / max(lm, 1e-4);
-      float pull = hover * 0.42 * R * smoothstep(3.2 * R, 0.25 * R, lm);
+      float pull = hover * 0.30 * R * smoothstep(3.2 * R, 0.25 * R, lm);
       float side = smoothstep(-R, R, dot(p, dirM));
       p -= dirM * pull * side * side;
 
-      // liquid ripple spreading from the cursor
-      float dm = length(p - toM * 0.75);
-      float ripple = hover * sin(dm * 48.0 - t * 7.0) * exp(-dm * 7.0);
-
-      // organic, slowly deforming outline
+      // gentle oval + slow breathing deformation (keeps the smooth reference silhouette)
+      p /= squash;
       float a = atan(p.y, p.x);
-      float n = noise(vec2(a * 1.4 + seed, t * 0.35 * spin)) - 0.5;
+      float dm = length(p - toM * 0.7);
+      float ripple = hover * 0.022 * sin(dm * 34.0 - t * 6.0) * exp(-dm * 5.0);
       float r = R * (1.0
-        + 0.055 * sin(3.0 * a + t * 0.6 * spin + seed)
-        + 0.035 * sin(5.0 * a - t * 0.85 + seed * 2.0)
-        + 0.09 * n
-        + 0.045 * ripple);
+        + 0.022 * sin(2.0 * a + t * 0.55 * spin + seed)
+        + 0.015 * sin(3.0 * a - t * 0.4 + seed * 1.7)
+        + ripple);
       float len = length(p);
       float d = len - r;
+      vec2 pn = p / r;
 
-      // fake 3D surface for glossy lighting
-      float k = clamp(len / r, 0.0, 1.0);
-      float z = sqrt(max(0.0, 1.0 - k * k));
-      vec3 nrm = normalize(vec3(p / r, z + 1e-4));
+      // the light slowly circles inside; when hovered it turns toward the cursor
+      float ang = baseAng + 0.32 * sin(t * 0.33 * spin + seed);
+      vec2 ldir = vec2(cos(ang), sin(ang));
+      ldir = normalize(mix(ldir, dirM, hover * 0.55));
+      float s = dot(pn, ldir);                  // -1 dark side .. 1 lit side
+      float lit = clamp(s * 0.5 + 0.5, 0.0, 1.0);
 
-      // swirling internal light, rotating at this sphere's own speed
-      float ang = t * 0.32 * spin;
-      mat2 rot = mat2(cos(ang), -sin(ang), sin(ang), cos(ang));
-      vec2 sp = rot * (p / R);
-      vec2 flow = hover * 0.5 * vec2(sin(t * 3.1 + dm * 14.0), cos(t * 2.7 + dm * 11.0));
-      float f = fbm(sp * 1.5 + nrm.xy * 0.9 + vec2(seed, t * 0.12) + flow);
-      float g = fbm(sp * 2.3 - vec2(t * 0.09, seed) - flow * 0.6);
+      // body: sharp edge on the lit side, very soft blur on the dark side
+      float edge = mix(0.85 * R, 0.014 * R, pow(lit, 1.8));
+      float body = 1.0 - smoothstep(-edge, edge * 0.35, d);
 
-      vec3 deepViolet = vec3(0.20, 0.03, 0.52);
-      vec3 electric   = vec3(0.56, 0.16, 1.00);
-      vec3 magenta    = vec3(0.96, 0.07, 0.62);
-      vec3 hotPink    = vec3(1.00, 0.36, 0.70);
-      vec3 red        = vec3(0.95, 0.04, 0.10);
-      vec3 shadow     = vec3(0.05, 0.00, 0.10);
+      // smooth interior light pooled near the lit edge
+      float rr = clamp(len / r, 0.0, 1.2);
+      // light hugs the lit edge, fading inward like the reference's crescent of colour
+      vec2 spotC = ldir * 0.66;
+      float spot = exp(-dot(pn - spotC, pn - spotC) * 1.55) * smoothstep(-0.35, 0.75, s);
+      vec3 col = mid * (0.25 + 0.75 * smoothstep(-1.0, 0.5, s)) * 0.8;
+      col += hot * spot * spot * (0.82 + 0.1 * sin(t * 0.8 * spin + seed));
+      // tinted band just inside the rim on the lit side
+      float band = smoothstep(0.62, 0.98, rr) * smoothstep(0.1, 0.9, s);
+      col = mix(col, rimCol * 0.75, band * 0.45);
+      // the dark side sinks into a dim maroon / purple
+      col *= mix(0.14, 1.0, smoothstep(-1.0, 0.4, s));
 
-      vec3 col = mix(deepViolet, electric, smoothstep(0.25, 0.75, f));
-      col = mix(col, magenta, smoothstep(0.42, 0.78, g) * tint.x);
-      col = mix(col, red, smoothstep(0.30, 0.62, f * g * 1.7) * tint.y);
-      col = mix(col, hotPink, smoothstep(0.62, 0.92, g) * 0.55);
-      col = mix(col, mix(magenta, red, tint.y), 0.28 * tint.y);
+      // thin glowing rim on the lit edge
+      float rim = exp(-abs(d + 0.005 * R) / (0.014 * R)) * smoothstep(0.42, 0.97, s) * 0.62;
+      // faint haze around the sphere, stronger on the lit side
+      float glow = exp(-max(d, 0.0) / (0.28 * R)) * (0.18 + 0.3 * lit) * (1.0 - body);
 
-      // soft volumetric lighting: lit from the lower right, deep purple shadow upper left
-      vec3 L = normalize(vec3(0.5, 0.62, 0.62));
-      float diff = clamp(dot(nrm, L), 0.0, 1.0);
-      vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
-      float nh = clamp(dot(nrm, H), 0.0, 1.0);
-      float fres = pow(1.0 - z, 2.4);
-      vec3 lit = mix(shadow, col, 0.08 + 1.05 * diff);
-      // soft glossy sheen (no hard white dot)
-      lit += hotPink * pow(nh, 18.0) * 0.32;
-      // glowing crescent along the lit edge, like light passing through liquid
-      vec3 rimCol = mix(mix(magenta, red, tint.y * 0.8), hotPink, 0.3 + 0.3 * sin(a * 3.0 + t * 0.6 * spin));
-      lit += rimCol * pow(fres, 1.3) * (0.35 + 1.35 * diff);
-      lit += electric * pow(fres, 3.0) * 0.45;
-      float occl = smoothstep(-0.65, 0.9, dot(p / max(len, 1e-4), normalize(vec2(0.62, 0.78))));
-      lit *= mix(0.16, 1.18, occl);
-
-      float body = 1.0 - smoothstep(-0.22 * R, 0.12 * R, d);
-      float glow = exp(-max(d + 0.05 * R, 0.0) / (R * 0.42)) * 0.55 * (0.75 + 0.25 * sin(t * 0.9 * spin + seed));
-      vec3 glowCol = mix(electric, magenta, 0.45 + 0.35 * sin(a * 2.0 - t * 0.5 * spin)) * 0.85;
-
-      vec3 rgb = lit * body + glowCol * glow * (1.0 - body);
-      float alpha = clamp(body + glow * (1.0 - body) * 0.85, 0.0, 1.0);
+      vec3 rgb = col * body + rimCol * rim * (1.15 + 0.6 * hover) + haze * glow;
+      float alpha = clamp(max(max(rgb.r, rgb.g), rgb.b) * 1.25, 0.0, 1.0);
       return vec4(rgb, alpha);
     }
 
@@ -872,10 +859,14 @@ document.querySelectorAll(".js-year").forEach((node) => {
       vec2 off = (uRes - vec2(fit * imgA, fit)) * 0.5;
       vec2 q = (px - off) / fit;
 
-      vec4 s1 = sphere(q, uC1, uR.y, uTime, 0.8, 7.3, uHover.y, vec2(0.75, 1.0));  // red / magenta
-      vec4 s0 = sphere(q, uC0, uR.x, uTime, 1.25, 2.1, uHover.x, vec2(1.0, 0.35)); // violet / hot pink
+      // upper sphere: red core, light from the lower right, magenta-violet rim
+      vec4 s1 = sphere(q, uC1, uR.y, uTime, 0.8, 7.3, uHover.y, 0.62, vec2(1.04, 0.98),
+        vec3(0.86, 0.0, 0.06), vec3(0.40, 0.02, 0.22), vec3(0.66, 0.14, 0.80), vec3(0.30, 0.03, 0.40));
+      // lower sphere: hot pink core, light from the upper left, blue-violet rim
+      vec4 s0 = sphere(q, uC0, uR.x, uTime, 1.15, 2.1, uHover.x, 3.55, vec2(0.98, 1.04),
+        vec3(0.98, 0.17, 0.30), vec3(0.32, 0.07, 0.44), vec3(0.40, 0.16, 0.95), vec3(0.22, 0.07, 0.58));
       vec4 col = s0 + s1 * (1.0 - s0.a);
-      gl_FragColor = col;
+      gl_FragColor = vec4(min(col.rgb, vec3(1.0)), col.a);
     }`
 
   function compile(type, src) {
