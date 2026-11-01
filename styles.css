@@ -5911,3 +5911,8 @@ footer.site-footer .footer-logo {
   font-size: 16px;
   line-height: 1.6;
 }
+
+/* Our Approach descriptions: dimmed like the Crypto description */
+.approach article p {
+  color: rgba(255, 255, 255, 0.62);
+}
