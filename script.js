@@ -766,6 +766,7 @@ document.querySelectorAll(".js-year").forEach((node) => {
 
   const gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false })
   if (!gl) return // very old browsers: the hero simply shows no spheres
+  let ready = false
 
   const vert = `
     attribute vec2 aPos;
@@ -877,6 +878,8 @@ document.querySelectorAll(".js-year").forEach((node) => {
       gl_FragColor = vec4(min(col.rgb, vec3(1.0)), col.a);
     }`
 
+  const U = {}
+  function setup() {
   function compile(type, src) {
     const sh = gl.createShader(type)
     gl.shaderSource(sh, src)
@@ -897,13 +900,21 @@ document.querySelectorAll(".js-year").forEach((node) => {
   gl.enableVertexAttribArray(aPos)
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0)
 
-  const U = {}
   for (const name of ["uRes", "uTime", "uScale", "uMouse", "uHover", "uC0", "uC1", "uR", "uRot"]) U[name] = gl.getUniformLocation(prog, name)
   gl.uniform2f(U.uR, SPHERES[0].r, SPHERES[1].r)
+  ready = true
+  }
+  setup()
+
+  // Browsers can drop a hidden canvas's GPU context (e.g. while another page is shown).
+  // Keep it recoverable and rebuild everything when it comes back.
+  canvas.addEventListener("webglcontextlost", (e) => { e.preventDefault(); ready = false })
+  canvas.addEventListener("webglcontextrestored", () => { setup(); resize() })
 
   // size the drawing buffer to the canvas (capped pixel ratio for performance)
   let scale = 1
   function resize() {
+    if (!canvas.clientWidth) return
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
     const w = Math.round(canvas.clientWidth * dpr)
     const h = Math.round(canvas.clientHeight * dpr)
@@ -929,7 +940,11 @@ document.querySelectorAll(".js-year").forEach((node) => {
   const mouse = [-9, -9]
   const hover = [0, 0]
   window.addEventListener("pointermove", (e) => {
+    // ignore the cursor while the home page (and so this canvas) is hidden:
+    // a zero-size canvas would turn the position into NaN and break the drawing
+    if (!canvas.clientWidth || !canvas.clientHeight) return
     const m = toImageSpace(e.clientX, e.clientY)
+    if (!Number.isFinite(m[0]) || !Number.isFinite(m[1])) return
     target[0] = m[0]
     target[1] = m[1]
   }, { passive: true })
@@ -944,8 +959,11 @@ document.querySelectorAll(".js-year").forEach((node) => {
   }
 
   // only animate while the hero is on screen and the tab is visible
-  let onScreen = true
-  new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting }).observe(canvas)
+  function onScreen() {
+    if (!canvas.isConnected || canvas.offsetParent === null) return false // page hidden
+    const r = canvas.getBoundingClientRect()
+    return r.bottom > 0 && r.top < window.innerHeight && r.width > 0
+  }
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   const start = performance.now()
@@ -955,12 +973,18 @@ document.querySelectorAll(".js-year").forEach((node) => {
     requestAnimationFrame(frame)
     const dt = Math.min((now - last) / 1000, 0.05)
     last = now
-    if (!onScreen || document.hidden || !canvas.clientWidth) return
+    if (!ready || document.hidden || !onScreen()) return
+    if (gl.isContextLost()) { ready = false; return }
+    // the canvas may have been resized while its page was hidden
+    resize()
     if (!reduce) clock += dt
 
     // ease the cursor and the hover strength so shapes stretch and relax smoothly
     mouse[0] += (target[0] - mouse[0]) * 0.05
     mouse[1] += (target[1] - mouse[1]) * 0.05
+    // safety net: never let a bad value stick
+    if (!Number.isFinite(mouse[0]) || !Number.isFinite(mouse[1])) { mouse[0] = mouse[1] = target[0] = target[1] = -9 }
+    for (let i = 0; i < 2; i++) if (!Number.isFinite(hover[i])) hover[i] = 0
     const c0 = centre(0, clock)
     const c1 = centre(1, clock)
     ;[c0, c1].forEach((c, i) => {
