@@ -6579,3 +6579,112 @@ html.intro-handover #menu-toggle {
     margin: 0;
   }
 }
+
+/* ================= VALUES DIAGRAM (About · Our Values) ================= */
+.values-diagram {
+  width: min(560px, 100%, 62vh * 1.28);
+  margin-top: 56px;
+}
+
+.values-diagram.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.values-diagram-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.vd-top { fill-opacity: 0.22; }
+.vd-side { fill-opacity: 0.38; }
+.vd-side-r { fill-opacity: 0.28; }
+
+.vd-top,
+.vd-side,
+.vd-edge {
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  fill-rule: nonzero;
+}
+
+.vd-edge { fill: none; }
+
+.vd-drop {
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1.4;
+  stroke-dasharray: 3 6;
+  animation: vd-flow 3s linear infinite;
+}
+
+@keyframes vd-flow {
+  to { stroke-dashoffset: -18; }
+}
+
+.vd-label line,
+.vd-label path {
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.4;
+}
+
+.vd-label circle { fill: #fff; }
+
+.vd-label text {
+  fill: rgba(255, 255, 255, 0.85);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 22px;
+  font-style: italic;
+}
+
+/* tiers drop into place one after another, bottom first */
+.vd-tier {
+  opacity: 0;
+  transform: translateY(-46px);
+  transition:
+    opacity 700ms ease,
+    transform 1000ms cubic-bezier(0.2, 0.7, 0, 1);
+  transition-delay: calc((3 - var(--i)) * 160ms);
+}
+
+.vd-label {
+  opacity: 0;
+  transition: opacity 600ms ease;
+  transition-delay: calc((3 - var(--i)) * 160ms + 500ms);
+}
+
+.values-diagram.is-visible .vd-tier { opacity: 1; transform: none; }
+.values-diagram.is-visible .vd-label { opacity: 1; }
+
+/* hovering a tier lifts it and brightens it */
+.vd-slab {
+  transition: transform 500ms cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+.vd-tier:hover .vd-slab { transform: translateY(-10px); }
+.vd-tier:hover .vd-top { fill-opacity: 0.4; }
+.vd-tier:hover .vd-label text { fill: #fff; }
+
+@media (max-width: 900px) {
+  .values-diagram {
+    width: min(520px, 100%);
+    margin: 50px auto 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vd-tier, .vd-label { opacity: 1; transform: none; }
+  .vd-drop { animation: none; }
+}
+
+/* fit the whole pinned column (title + diagram) on screen */
+.values-diagram {
+  width: max(300px, min(520px, 100%, calc((100vh - 470px) * 1.14)));
+  margin-top: 44px;
+}
+
+@media (max-width: 900px) {
+  .values-diagram { width: min(520px, 100%); }
+}
