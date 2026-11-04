@@ -7,8 +7,8 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual"
 const asset = (name) => `assets/${name}`
 
 const projects = [
-  { title: "Simply Tokenized", link: "#case-simply", description: "Revolutionize your corporate finance with Tokenization", tags: ["UI UX", "Web App", "Design System"], image: "work-simply.webp", tone: "#00b5cb" },
-  { title: "Akay", link: "#case-akay", description: "Taste nature through technology", tags: ["UI UX", "Web Design"], image: "work-akay.webp", tone: "#c9d0d8" },
+  { title: "Simply Tokenized", description: "Revolutionize your corporate finance with Tokenization", tags: ["UI UX", "Web App", "Design System"], image: "work-simply.webp", tone: "#00b5cb" },
+  { title: "Akay", description: "Taste nature through technology", tags: ["UI UX", "Web Design"], image: "work-akay.webp", tone: "#c9d0d8" },
   { title: "Sanjeevini Wellness", description: "Streamline your lifestyle with expertise", tags: ["UI UX", "Web Design", "Web App"], image: "work-sanjeevini.webp", tone: "#727ba9" },
   { title: "FreshKart", description: "Groceries delivered in minutes, not hours", tags: ["UI UX", "Mobile App", "eCommerce"], image: "work-grocery.webp", tone: "#2b0a78" },
   { title: "Sanjeevini Life Care Village", description: "Wholeness in wellness, across web and mobile", tags: ["UI UX", "Web Design", "Mobile", "Branding"], image: "work-sanjeevini-site.webp", tone: "#91c7b3", wide: true },
@@ -114,12 +114,8 @@ function projectCard(project, index, { offsets = true } = {}) {
     attrs["data-parallax-max"] = leftColumn ? "35" : "70"
   }
   const card = el("article", attrs, [image, info])
-  // Projects with a case study: the whole card opens it
-  if (project.link) {
-    card.classList.add("has-case")
-    card.append(el("a", { class: "card-link", href: project.link, "aria-label": `View ${project.title} case study` }))
-    image.append(el("span", { class: "card-view", text: "View case study →" }))
-  }
+  // Case studies are on the way: show a "Coming soon" tag when hovering the image
+  image.append(el("span", { class: "card-soon", text: "Coming soon" }))
   return card
 }
 
@@ -161,8 +157,6 @@ const subPages = {
   "#ai-sprint": document.getElementById("ai-sprint"),
   "#web3": document.getElementById("web3"),
   "#work-page": document.getElementById("work-page"),
-  "#case-simply": document.getElementById("case-simply"),
-  "#case-akay": document.getElementById("case-akay"),
   "#privacy": document.getElementById("privacy"),
 }
 
