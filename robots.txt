@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ajesh2002.github.io/lemind-site/sitemap.xml

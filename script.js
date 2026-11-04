@@ -195,6 +195,7 @@ function swapTo(page) {
   for (const sub of Object.values(subPages)) sub.hidden = sub !== page
   currentPage = page
   updateMenuCurrent()
+  updatePageMeta(page)
   jumpToTarget(page)
   hideReveals(page)
   measureParallax()
@@ -1006,6 +1007,31 @@ document.querySelectorAll(".js-year").forEach((node) => {
   resize()
   requestAnimationFrame(frame)
 })()
+
+
+// ---------- Per-page title & description (SEO + browser tab) ----------
+const PAGE_META = {
+  "home-page": ["Lemind | UI/UX Design & Digital Product Studio", "Lemind is a UI/UX design studio crafting meaningful digital products—web & app design, development, branding, AI product sprints and Web3 design."],
+  "services-page": ["Services — UI/UX, Development & Branding | Lemind", "Research & innovation, experience design, frontend and full-stack development, product consultation and branding—end-to-end digital product services by Lemind."],
+  "about-page": ["About Lemind — A Mindful Experience Design Studio", "We're Lemind, a UI/UX design studio rooted in empathy, clarity and forward-thinking design. Meet our values and the way we work."],
+  "work-page": ["Our Work — UI/UX & Product Design Case Studies | Lemind", "Selected products, brands and experiences designed by Lemind—fintech, wellness, eCommerce, airline and in-flight entertainment projects."],
+  "ai-sprint": ["AI Sprint Studio — Prototype & Validate in 5 Days | Lemind", "Turn bold ideas into tested prototypes within days. Lemind's AI Sprint Studio combines lean product thinking with AI tools to validate MVPs fast."],
+  "web3": ["Crypto & Web3 Design Agency — Branding, dApp UX | Lemind", "Branding, websites and dApp UX for crypto and Web3 products. Lemind designs DeFi, NFT, wallet and tokenization experiences people trust."],
+  "contact-page": ["Contact Lemind — Let's Talk About Your Project", "Have an idea? Tell us about your product, website or brand and the Lemind team will get back to you within 1–2 business days."],
+  "thank-you": ["Thank You | Lemind", "Thanks for reaching out to Lemind—we'll be in touch soon."],
+  "privacy": ["Privacy & Terms | Lemind", "How Lemind handles your information and the terms for using this website."],
+}
+const metaDesc = document.querySelector('meta[name="description"]')
+const ogTitle = document.querySelector('meta[property="og:title"]')
+const ogDesc = document.querySelector('meta[property="og:description"]')
+function updatePageMeta(page) {
+  const meta = PAGE_META[page?.id]
+  if (!meta) return
+  document.title = meta[0]
+  metaDesc?.setAttribute("content", meta[1])
+  ogTitle?.setAttribute("content", meta[0])
+  ogDesc?.setAttribute("content", meta[1])
+}
 
 // ---------- Init ----------
 renderProjects()
