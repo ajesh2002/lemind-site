@@ -498,7 +498,7 @@ contactForm.addEventListener("submit", async (event) => {
     formStatus.innerHTML = ""
     formStatus.append(
       "Sorry, your message couldn’t be sent right now. Please try again, or email us at ",
-      el("strong", { text: "hello@lemind.designs" }),
+      el("strong", { text: "hey@lemind.design" }),
       ".",
     )
     return

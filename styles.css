@@ -6737,3 +6737,9 @@ html.intro-handover #menu-toggle {
     margin-right: 6%;
   }
 }
+
+/* phone number links look like the surrounding text */
+.menu-hello a[href^="tel:"],
+.contact-info a[href^="tel:"] {
+  border-bottom: 0;
+}
