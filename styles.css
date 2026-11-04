@@ -6743,3 +6743,17 @@ html.intro-handover #menu-toggle {
 .contact-info a[href^="tel:"] {
   border-bottom: 0;
 }
+
+/* Contact page address */
+.contact-address {
+  margin: 14px 0 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 15px;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.contact-address strong {
+  color: #fff;
+  font-weight: 500;
+}
