@@ -6729,3 +6729,11 @@ html.intro-handover #menu-toggle {
 
 /* the concept card already says "Next idea in progress" */
 .project-card .concept-art ~ .card-soon { display: none; }
+
+/* longer hero headline ("…in days, not months."): a little wider so it stays at four lines */
+@media (min-width: 901px) {
+  .hero h1 {
+    width: min(42vw, 600px);
+    margin-right: 6%;
+  }
+}

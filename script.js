@@ -208,7 +208,17 @@ function swapTo(page) {
 function playEntrance() {
   requestAnimationFrame(() => {
     document.body.classList.remove("page-entering")
-    setTimeout(measureParallax, 1150) // re-measure once the content has risen into place
+    // safety net: if the rise-in transition ever stalls, snap the content into place
+    setTimeout(() => {
+      document.querySelectorAll(".page-body, .thanks-hero").forEach((el) => {
+        if (getComputedStyle(el).translate !== "none") {
+          el.style.transition = "none"
+          el.style.translate = "none"
+          requestAnimationFrame(() => { el.style.transition = ""; el.style.translate = "" })
+        }
+      })
+      measureParallax()
+    }, 1250)
     document.body.classList.add("page-ready")
     watchReveals(currentPage)
     resetCounters(currentPage)
@@ -1090,6 +1100,8 @@ const landingOnHome = !window.location.hash || window.location.hash === "#top"
 async function runIntro() {
   const html = document.documentElement
   html.classList.add("intro-running")
+  // the intro covers the page, so the page's own rise-in isn't needed (and would stall)
+  document.body.classList.remove("page-entering")
   curtain.className = "page-curtain" // the panel is not used for this
   resetHomeToTop()
 
