@@ -7,11 +7,12 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual"
 const asset = (name) => `assets/${name}`
 
 const projects = [
+  { title: "Life Fitness", link: "#case-life-fitness", description: "Fitness beyond limits—a brand built on a bolt", tags: ["Branding", "Identity", "Colour System"], image: "work-lifefitness.webp", tone: "#395c58" },
   { title: "Simply Tokenized", description: "Revolutionize your corporate finance with Tokenization", tags: ["UI UX", "Web App", "Design System"], image: "work-simply.webp", tone: "#00b5cb" },
   { title: "Akay", description: "Taste nature through technology", tags: ["UI UX", "Web Design"], image: "work-akay.webp", tone: "#c9d0d8" },
   { title: "Sanjeevini Wellness", description: "Streamline your lifestyle with expertise", tags: ["UI UX", "Web Design", "Web App"], image: "work-sanjeevini.webp", tone: "#727ba9" },
-  { title: "FreshKart", description: "Groceries delivered in minutes, not hours", tags: ["UI UX", "Mobile App", "eCommerce"], image: "work-grocery.webp", tone: "#2b0a78" },
   { title: "Sanjeevini Life Care Village", description: "Wholeness in wellness, across web and mobile", tags: ["UI UX", "Web Design", "Mobile", "Branding"], image: "work-sanjeevini-site.webp", tone: "#91c7b3", wide: true },
+  { title: "FreshKart", description: "Groceries delivered in minutes, not hours", tags: ["UI UX", "Mobile App", "eCommerce"], image: "work-grocery.webp", tone: "#2b0a78" },
   { title: "Ascension Team", description: "Connecting Airline Crew Teams", tags: ["UI UX", "Mobile App", "Product Design"], image: "work-ascension.webp", tone: "#4a5cc8" },
   { title: "Wiideman Consulting", description: "SEO Consulting, Training, Strategy & Procurement", tags: ["UI UX", "Web Design", "SEO"], image: "work-wiideman.webp", tone: "#ffffff" },
   { title: "Donica IFE", description: "Inflight entertainment product", tags: ["UI UX", "IFE System", "Product Design"], image: "work-donica.webp", tone: "#1e3a6b" },
@@ -114,8 +115,15 @@ function projectCard(project, index, { offsets = true } = {}) {
     attrs["data-parallax-max"] = leftColumn ? "35" : "70"
   }
   const card = el("article", attrs, [image, info])
-  // Case studies are on the way: show a "Coming soon" tag when hovering the image
-  image.append(el("span", { class: "card-soon", text: "Coming soon" }))
+  if (project.link) {
+    // Projects with a case study: the whole card opens it
+    card.classList.add("has-case")
+    card.append(el("a", { class: "card-link", href: project.link, "aria-label": `View ${project.title} case study` }))
+    image.append(el("span", { class: "card-view", text: "View case study →" }))
+  } else {
+    // Other case studies are on the way: show a "Coming soon" tag when hovering the image
+    image.append(el("span", { class: "card-soon", text: "Coming soon" }))
+  }
   return card
 }
 
@@ -157,6 +165,7 @@ const subPages = {
   "#ai-sprint": document.getElementById("ai-sprint"),
   "#web3": document.getElementById("web3"),
   "#work-page": document.getElementById("work-page"),
+  "#case-life-fitness": document.getElementById("case-life-fitness"),
   "#privacy": document.getElementById("privacy"),
 }
 
@@ -677,6 +686,47 @@ document.querySelectorAll(".work-filters button").forEach((button) => {
   })
 })
 
+// ---------- Case study: section navigation + interior theme switch ----------
+document.querySelectorAll(".lf-page").forEach((page) => {
+  const links = [...page.querySelectorAll(".lf-nav a")]
+  const sections = links.map((link) => page.querySelector(link.getAttribute("href")))
+  const setActive = (section) => {
+    links.forEach((link, i) => {
+      const on = sections[i] === section
+      link.classList.toggle("is-active", on)
+      if (on) link.setAttribute("aria-current", "true")
+      else link.removeAttribute("aria-current")
+      // keep the current chip in view when the strip scrolls sideways (phones)
+      if (on) {
+        const track = link.parentElement
+        track.scrollTo({ left: link.offsetLeft - (track.clientWidth - link.offsetWidth) / 2, behavior: "smooth" })
+      }
+    })
+  }
+  // The section whose heading most recently passed the top third of the screen is "current"
+  let navFrame = 0
+  const updateNav = () => {
+    navFrame = 0
+    if (page.hidden) return
+    const line = window.innerHeight * 0.35
+    let current = sections[0]
+    for (const section of sections) if (section.getBoundingClientRect().top <= line) current = section
+    if (!links[sections.indexOf(current)].classList.contains("is-active")) setActive(current)
+  }
+  window.addEventListener("scroll", () => { if (!navFrame) navFrame = requestAnimationFrame(updateNav) }, { passive: true })
+
+  const space = page.querySelector(".lf-space")
+  space?.querySelectorAll(".lf-theme-toggle button").forEach((button) => {
+    button.addEventListener("click", () => {
+      space.dataset.theme = button.dataset.theme
+      space.querySelectorAll(".lf-theme-toggle button").forEach((b) => {
+        b.classList.toggle("is-active", b === button)
+        b.setAttribute("aria-pressed", String(b === button))
+      })
+    })
+  })
+})
+
 // ---------- Kebab menu ----------
 const menuToggle = document.getElementById("menu-toggle")
 const siteMenu = document.getElementById("site-menu")
@@ -1025,6 +1075,7 @@ const PAGE_META = {
   "services-page": ["Services — UI/UX, Development & Branding | Lemind", "Research & innovation, experience design, frontend and full-stack development, product consultation and branding—end-to-end digital product services by Lemind."],
   "about-page": ["About Lemind — A Mindful Experience Design Studio", "We're Lemind, a UI/UX design studio rooted in empathy, clarity and forward-thinking design. Meet our values and the way we work."],
   "work-page": ["Our Work — UI/UX & Product Design Case Studies | Lemind", "Selected products, brands and experiences designed by Lemind—fintech, wellness, eCommerce, airline and in-flight entertainment projects."],
+  "case-life-fitness": ["Life Fitness — Brand Identity Case Study | Lemind", "How the Life Fitness identity was built: brand definition, the LF bolt symbol, logo lock-ups, a yellow and deep green colour system, and gym interiors in dark and light themes."],
   "ai-sprint": ["AI Sprint Studio — Prototype & Validate in 5 Days | Lemind", "Turn bold ideas into tested prototypes within days. Lemind's AI Sprint Studio combines lean product thinking with AI tools to validate MVPs fast."],
   "web3": ["Crypto & Web3 Design Agency — Branding, dApp UX | Lemind", "Branding, websites and dApp UX for crypto and Web3 products. Lemind designs DeFi, NFT, wallet and tokenization experiences people trust."],
   "contact-page": ["Contact Lemind — Let's Talk About Your Project", "Have an idea? Tell us about your product, website or brand and the Lemind team will get back to you within 1–2 business days."],
