@@ -8,7 +8,7 @@ const asset = (name) => `assets/${name}`
 
 const projects = [
   { title: "Life Fitness", link: "#case-life-fitness", description: "Fitness beyond limits—a brand built on a bolt", tags: ["Branding", "Identity", "Colour System"], image: "work-lifefitness.webp", tone: "#395c58" },
-  { title: "Simply Tokenized", description: "Revolutionize your corporate finance with Tokenization", tags: ["UI UX", "Web App", "Design System"], image: "work-simply.webp", tone: "#00b5cb" },
+  { title: "Simply Tokenized", link: "#case-simply", description: "Revolutionize your corporate finance with Tokenization", tags: ["UI UX", "Web App", "Design System"], image: "work-simply.webp", tone: "#00b5cb" },
   { title: "Akay", description: "Taste nature through technology", tags: ["UI UX", "Web Design"], image: "work-akay.webp", tone: "#c9d0d8" },
   { title: "Sanjeevini Wellness", description: "Streamline your lifestyle with expertise", tags: ["UI UX", "Web Design", "Web App"], image: "work-sanjeevini.webp", tone: "#727ba9" },
   { title: "Sanjeevini Life Care Village", description: "Wholeness in wellness, across web and mobile", tags: ["UI UX", "Web Design", "Mobile", "Branding"], image: "work-sanjeevini-site.webp", tone: "#91c7b3", wide: true },
@@ -166,6 +166,7 @@ const subPages = {
   "#web3": document.getElementById("web3"),
   "#work-page": document.getElementById("work-page"),
   "#case-life-fitness": document.getElementById("case-life-fitness"),
+  "#case-simply": document.getElementById("case-simply"),
   "#privacy": document.getElementById("privacy"),
 }
 
@@ -1075,6 +1076,7 @@ const PAGE_META = {
   "services-page": ["Services — UI/UX, Development & Branding | Lemind", "Research & innovation, experience design, frontend and full-stack development, product consultation and branding—end-to-end digital product services by Lemind."],
   "about-page": ["About Lemind — A Mindful Experience Design Studio", "We're Lemind, a UI/UX design studio rooted in empathy, clarity and forward-thinking design. Meet our values and the way we work."],
   "work-page": ["Our Work — UI/UX & Product Design Case Studies | Lemind", "Selected products, brands and experiences designed by Lemind—fintech, wellness, eCommerce, airline and in-flight entertainment projects."],
+  "case-simply": ["Simply Tokenized — Tokenization Platform Case Study | Lemind", "How Lemind designed the Simply Tokenized platform: guided token offerings, investor accounts and KYC, a shared status system, and a white-label payment widget in light and dark themes."],
   "case-life-fitness": ["Life Fitness — Brand Identity Case Study | Lemind", "How the Life Fitness identity was built: brand definition, the LF bolt symbol, logo lock-ups, a yellow and deep green colour system, and gym interiors in dark and light themes."],
   "ai-sprint": ["AI Sprint Studio — Prototype & Validate in 5 Days | Lemind", "Turn bold ideas into tested prototypes within days. Lemind's AI Sprint Studio combines lean product thinking with AI tools to validate MVPs fast."],
   "web3": ["Crypto & Web3 Design Agency — Branding, dApp UX | Lemind", "Branding, websites and dApp UX for crypto and Web3 products. Lemind designs DeFi, NFT, wallet and tokenization experiences people trust."],
