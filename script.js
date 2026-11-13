@@ -308,6 +308,13 @@ function updateHeader() {
   const compactCenter = 12 + (logo.offsetHeight * logoScale) / 2
   const compactTop = compactCenter - toggle.offsetHeight / 2
   if (progress > 0) toggle.style.top = `${(baseTop + (compactTop - baseTop) * progress).toFixed(1)}px`
+
+  // "Let's Talk" pill appears beside the kebab once the logo has settled into the top bar
+  const settled = progress > 0.92
+  header.style.setProperty("--talk-center", `${compactCenter.toFixed(1)}px`)
+  header.classList.toggle("is-settled", settled)
+  const talk = header.querySelector(".home-talk")
+  if (talk) talk.tabIndex = settled ? 0 : -1
 }
 
 // ---------- Parallax ----------

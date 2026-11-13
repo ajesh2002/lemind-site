@@ -8039,3 +8039,43 @@ html.intro-handover #menu-toggle {
   .st-next-title,
   .st-next-title i { transition: none; }
 }
+
+/* Home header: "Let's Talk" pill beside the kebab, shown once the logo has shrunk into the top bar */
+.home-talk {
+  position: absolute;
+  top: var(--talk-center, 46px);
+  right: calc(var(--menu-btn-right) + var(--menu-btn) + 16px);
+  padding: 10px 20px;
+  border-radius: 60px;
+  color: #132809;
+  background: #42d753;
+  font-weight: 500;
+  font-size: 21px;
+  white-space: nowrap;
+  opacity: 0;
+  translate: 0 calc(-50% + 10px);
+  pointer-events: none;
+  transition: opacity 300ms ease, translate 400ms cubic-bezier(0.2, 0.7, 0, 1), background 250ms ease;
+}
+
+.site-header.is-settled .home-talk {
+  opacity: 1;
+  translate: 0 -50%;
+  pointer-events: auto;
+}
+
+.home-talk:hover {
+  background: var(--green);
+  translate: 0 calc(-50% - 2px);
+}
+
+@media (max-width: 900px) {
+  .home-talk {
+    padding: 8px 13px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-talk { transition: none; }
+}
